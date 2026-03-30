@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 97ea77d1bcb2da94a885e08fa9e38e40
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - tilePrefab: {fileID: 4409304303140925559, guid: 70b097d91f591b64891ab29273a15070, type: 3}
+  - warriorPrefab: {fileID: 5039218606265409354, guid: 16cb0a2d58f2e9d468e390b6212be102, type: 3}
+  - magePrefab: {fileID: 8131570012517503318, guid: bd6f7ce9955c438478118c96ce8ae947, type: 3}
+  - priestPrefab: {fileID: 2975760025115323165, guid: 247d7cba59fab8540b5d438d20cf36e0, type: 3}
+  - moveIndicatorPrefab: {fileID: 146918776549798978, guid: 0897b068b084ae7428e8aaa8f54b5b30, type: 3}
+  - attackIndicatorPrefab: {fileID: 6532043852496422581, guid: 50f6a087f61a8b945bc2ca713eb35e98, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
