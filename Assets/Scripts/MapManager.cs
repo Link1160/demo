@@ -61,19 +61,11 @@ public class MapManager : MonoBehaviour
     public bool IsWalkable(Vector2Int pos)
     {
         Tile t = GetTile(pos);
-        if (t == null)
-        {
-            Debug.Log($"IsWalkable: 位置 {pos} 没有 Tile");
-            return false;
-        }
-        bool walkable = t.type != TileType.Wall;
-        Debug.Log($"IsWalkable: 位置 {pos}, 类型 {t.type}, 可走 = {walkable}");
-        return walkable;
+        if (t == null) return false;
+        // 只有 Ground 和 Water 可走（Water 可走但要扣血）
+        return t.type == TileType.Ground || t.type == TileType.Water;
     }
-    /// <summary>
-    /// BFS 寻路，返回从起点到终点的路径（不包含起点，包含终点）
-    /// 如果不可达，返回 null
-    /// </summary>
+
     public List<Vector2Int> FindPath(Vector2Int start, Vector2Int end)
     {
         // 起点终点相同，直接返回空列表（不需要移动）

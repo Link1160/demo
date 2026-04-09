@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
+    //private Vector2Int? pendingEventPos;           // 移动完成后需要触发的事件格子坐标
+    private Vector2Int? pendingEventPosForDisplay; // 仅用于显示（可选）
+    private Vector2Int? pendingEventPos = null; // 存储待触发的事件格子坐标
     public enum TileEffectResult
     {
         Continue,   // 不中断移动
@@ -40,6 +43,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // 如果正在显示事件UI，禁止地图操作
+        if (GameManager.Instance.IsInEvent) return;
         if (isMoving) return;   // 移动中不允许点击
 
         if (Input.GetMouseButtonDown(0))
@@ -49,44 +54,65 @@ public class PlayerController : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Tile t = hit.collider.GetComponent<Tile>();
-                if (t != null)
+                Tile clickedTile = hit.collider.GetComponent<Tile>();
+                if (clickedTile == null) return;
+
+                Vector2Int clickedPos = clickedTile.gridPos;
+                Vector2Int targetPos = clickedPos;
+                Vector2Int? eventPos = null;
+
+                // 如果点击的格子不可走（事件/战斗/墙），则尝试寻找相邻的可走格子
+                if (!map.IsWalkable(clickedPos))
                 {
-                    // 如果已经有路径且点击的是同一个格子，则执行移动
-                    if (currentPath != null && currentPath.Count > 0 &&
-                        currentPath[currentPath.Count - 1] == t.gridPos)
+                    // 检查是否已经站在相邻格
+                    if (IsAdjacent(gridPos, clickedPos))
                     {
-                        Debug.Log("确认移动，开始走路径...");
-                        StartCoroutine(MoveAlongPath(currentPath));
+                        // 直接触发事件，不移动
+                        Debug.Log("已在事件格相邻，直接触发");
                         ClearPathIndicators();
                         currentPath = null;
+                        TriggerTileEffect(clickedPos);
+                        return;
+                    }
+
+                    // 否则寻找最近的相邻可走格子
+                    Vector2Int? neighbor = FindAdjacentWalkableTile(clickedPos);
+                    if (neighbor == null)
+                    {
+                        Debug.Log("目标格子不可走，且周围没有可走格子");
+                        ClearPathIndicators();
+                        currentPath = null;
+                        return;
+                    }
+                    targetPos = neighbor.Value;
+                    eventPos = clickedPos; // 记录真正要触发的事件格子
+                }
+
+                // 如果已经有路径且点击的是同一个目标格子，则执行移动
+                if (currentPath != null && currentPath.Count > 0 && currentPath[currentPath.Count - 1] == targetPos)
+                {
+                    Debug.Log("确认移动，开始走路径...");
+                    pendingEventPos = eventPos; // 存储待触发事件
+                    StartCoroutine(MoveAlongPath(currentPath));
+                    ClearPathIndicators();
+                    currentPath = null;
+                }
+                else
+                {
+                    // 重新计算路径
+                    List<Vector2Int> path = map.FindPath(gridPos, targetPos);
+                    if (path != null && path.Count > 0)
+                    {
+                        Debug.Log($"找到路径，长度 {path.Count}");
+                        currentPath = path;
+                        ShowPathIndicators(path);
+                        // 注意：不立即移动，等待二次点击
                     }
                     else
                     {
-                        // 否则重新计算路径并显示
-                        Vector2Int target = t.gridPos;
-                        if (map.IsWalkable(target))
-                        {
-                            List<Vector2Int> path = map.FindPath(gridPos, target);
-                            if (path != null && path.Count > 0)
-                            {
-                                Debug.Log($"找到路径，长度 {path.Count}");
-                                currentPath = path;
-                                ShowPathIndicators(path);
-                            }
-                            else
-                            {
-                                Debug.Log("没有路径");
-                                ClearPathIndicators();
-                                currentPath = null;
-                            }
-                        }
-                        else
-                        {
-                            Debug.Log("目标格子不可走");
-                            ClearPathIndicators();
-                            currentPath = null;
-                        }
+                        Debug.Log("没有路径");
+                        ClearPathIndicators();
+                        currentPath = null;
                     }
                 }
             }
@@ -95,13 +121,38 @@ public class PlayerController : MonoBehaviour
                 // 点击空白区域清除路径
                 ClearPathIndicators();
                 currentPath = null;
+                pendingEventPos = null;
             }
         }
     }
 
-    /// <summary>
-    /// 显示路径指示器
-    /// </summary>
+    private bool IsAdjacent(Vector2Int a, Vector2Int b)
+    {
+        return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y) == 1;
+    }
+
+    private Vector2Int? FindAdjacentWalkableTile(Vector2Int center)
+    {
+        Vector2Int[] dirs = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
+        Vector2Int? best = null;
+        int bestDist = int.MaxValue;
+
+        foreach (var dir in dirs)
+        {
+            Vector2Int neighbor = center + dir;
+            if (map.IsWalkable(neighbor))
+            {
+                int dist = Mathf.Abs(neighbor.x - gridPos.x) + Mathf.Abs(neighbor.y - gridPos.y);
+                if (dist < bestDist)
+                {
+                    bestDist = dist;
+                    best = neighbor;
+                }
+            }
+        }
+        return best;
+    }
+
     void ShowPathIndicators(List<Vector2Int> path)
     {
         ClearPathIndicators();
@@ -131,7 +182,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 沿路径逐步移动
     /// </summary>
-    System.Collections.IEnumerator MoveAlongPath(List<Vector2Int> path)
+    private System.Collections.IEnumerator MoveAlongPath(List<Vector2Int> path)
     {
         isMoving = true;
 
@@ -151,29 +202,29 @@ public class PlayerController : MonoBehaviour
             gridPos = step;
             transform.position = targetTile.transform.position;
 
-            // 触发格子效果，判断是否停止
-            TileEffectResult result = TriggerTileEffect(step);
-            if (result == TileEffectResult.Stop)
+            // 每步触发格子效果（仅针对 Water，不中断移动）
+            if (targetTile.type == TileType.Water)
             {
-                // 停止移动，清除剩余路径
-                Debug.Log($"停在 {step}，处理事件/战斗");
-                break;   // 跳出循环，不再继续移动
+                Debug.Log("踩到水，扣血！");
+                GameManager.Instance.TakeDamage(4); // 调用统一伤害处理
             }
 
-            // 等待一小段时间，形成走路动画
+            // 注意：不再每步触发格子效果
             yield return new WaitForSeconds(0.2f);
         }
 
-        // 移动结束后，清除路径指示器并重置 currentPath
-        ClearPathIndicators();
-        currentPath = null;
         isMoving = false;
+
+        // 移动结束后，如果有待触发的事件格子，则触发事件
+        if (pendingEventPos != null)
+        {
+            TriggerTileEffect(pendingEventPos.Value);
+            pendingEventPos = null;
+        }
+
         Debug.Log("移动结束");
     }
 
-    /// <summary>
-    /// 触发格子效果（水扣血、事件、战斗等）
-    /// </summary>
     TileEffectResult TriggerTileEffect(Vector2Int pos)
     {
         Tile t = map.GetTile(pos);
@@ -183,14 +234,23 @@ public class PlayerController : MonoBehaviour
         {
             case TileType.Water:
                 Debug.Log("踩到水，扣血！");
-                // 扣血，继续移动
+                GameManager.Instance.TakeDamage(4);
                 return TileEffectResult.Continue;
 
             case TileType.Event:
-                Debug.Log("触发事件");
-                // 显示事件 UI
-                ShowEventUI(t);
-                return TileEffectResult.Stop;   // 中断移动
+                MultiStepEvent multi = map.GetTile(pos).GetComponent<MultiStepEvent>();
+                if (multi != null) multi.Trigger();
+                else
+                {
+                    SimpleEvent simple = map.GetTile(pos).GetComponent<SimpleEvent>();
+                    if (simple != null) simple.Trigger();
+                    else
+                    {
+                        BarracksEvent barracks = map.GetTile(pos).GetComponent<BarracksEvent>();
+                        if (barracks != null) barracks.Trigger();
+                    }
+                }
+                return TileEffectResult.Stop;
 
             case TileType.Battle:
                 Debug.Log("进入战斗");
@@ -238,4 +298,20 @@ public class PlayerController : MonoBehaviour
         }
         return closest;
     }
+
+    public void MoveTo(Vector2Int targetPos)
+    {
+        Tile targetTile = map.GetTile(targetPos);
+        if (targetTile != null)
+        {
+            gridPos = targetPos;
+            transform.position = targetTile.transform.position;
+            // 不触发格子效果，因为这是事件选项导致的移动
+        }
+        else
+        {
+            Debug.LogError($"目标格子 {targetPos} 不存在");
+        }
+    }
+
 }
