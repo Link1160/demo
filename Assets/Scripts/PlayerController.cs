@@ -1,5 +1,6 @@
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +20,24 @@ public class PlayerController : MonoBehaviour
     private List<Vector2Int> currentPath = null;
     private bool isMoving = false;
 
+    [System.Serializable]
+    public class DirectionSprites
+    {
+        public Sprite idle;
+        public Sprite[] move; // 长度2
+    }
+
+    public DirectionSprites downSprites;
+    public DirectionSprites upSprites;
+    public DirectionSprites leftSprites;
+    public DirectionSprites rightSprites;
+
+    private SpriteRenderer sr;
+    private Coroutine moveAnimRoutine;
+    private DirectionSprites currentDirSprites;
+    private bool isMovingAnim = false;
+
+    public enum Dir { Up, Down, Left, Right }
     void Start()
     {
         map = MapManager.Instance;
@@ -34,11 +53,19 @@ public class PlayerController : MonoBehaviour
         {
             gridPos = startTile.gridPos;
             transform.position = startTile.transform.position;
+
+            GameManager.Instance.UpdateDistanceDisplay(gridPos);
         }
         else
         {
             Debug.LogError("找不到起始格子！");
         }
+
+        sr = GetComponent<SpriteRenderer>();
+        // 默认朝下
+        currentDirSprites = downSprites;
+        sr.sprite = currentDirSprites.idle;
+
     }
 
     void Update()
@@ -126,6 +153,44 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void SetDirection(Dir dir)
+    {
+        switch (dir)
+        {
+            case Dir.Down: currentDirSprites = downSprites; break;
+            case Dir.Up: currentDirSprites = upSprites; break;
+            case Dir.Left: currentDirSprites = leftSprites; break;
+            case Dir.Right: currentDirSprites = rightSprites; break;
+        }
+        if (!isMovingAnim) sr.sprite = currentDirSprites.idle;
+    }
+
+    public void StartMoving(Dir dir)
+    {
+        if (moveAnimRoutine != null) StopCoroutine(moveAnimRoutine);
+        isMovingAnim = true;
+        SetDirection(dir);
+        moveAnimRoutine = StartCoroutine(PlayMoveAnim());
+    }
+
+    public void StopMoving()
+    {
+        if (moveAnimRoutine != null) StopCoroutine(moveAnimRoutine);
+        moveAnimRoutine = null;
+        isMovingAnim = false;
+        sr.sprite = currentDirSprites.idle;
+    }
+
+    private IEnumerator PlayMoveAnim()
+    {
+        int frame = 0;
+        while (true)
+        {
+            sr.sprite = currentDirSprites.move[frame % 2];
+            frame++;
+            yield return new WaitForSeconds(0.15f);
+        }
+    }
     private bool IsAdjacent(Vector2Int a, Vector2Int b)
     {
         return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y) == 1;
@@ -161,20 +226,21 @@ public class PlayerController : MonoBehaviour
             Tile tile = map.GetTile(pos);
             if (tile != null)
             {
-                GameObject indicator = Instantiate(pathIndicatorPrefab, tile.transform.position, Quaternion.identity);
-                currentPathIndicators.Add(indicator);
+                SpriteRenderer sr = tile.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    sr.color = new Color(05f, 1f, 0.5f, 0.5f); // 半透明绿色
+                    currentPathIndicators.Add(tile.gameObject); // 存储格子对象，用于恢复
+                }
             }
         }
     }
-
-    /// <summary>
-    /// 清除所有路径指示器
-    /// </summary>
     void ClearPathIndicators()
     {
         foreach (GameObject go in currentPathIndicators)
         {
-            if (go != null) Destroy(go);
+            SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
+            if (sr != null) sr.color = Color.white; // 恢复原色
         }
         currentPathIndicators.Clear();
     }
@@ -182,9 +248,12 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 沿路径逐步移动
     /// </summary>
-    private System.Collections.IEnumerator MoveAlongPath(List<Vector2Int> path)
+    /// 
+
+    private IEnumerator MoveAlongPath(List<Vector2Int> path)
     {
         isMoving = true;
+        float stepDuration = 0.3f; // 每格移动耗时（秒），可调整
 
         foreach (Vector2Int step in path)
         {
@@ -198,21 +267,54 @@ public class PlayerController : MonoBehaviour
             Tile targetTile = map.GetTile(step);
             if (targetTile == null) break;
 
-            // 移动
-            gridPos = step;
-            transform.position = targetTile.transform.position;
+            // 计算移动方向并更新动画
+            Vector2Int delta = step - gridPos;
+            Dir dir = Dir.Down;
+            if (delta.x > 0) dir = Dir.Right;
+            else if (delta.x < 0) dir = Dir.Left;
+            else if (delta.y > 0) dir = Dir.Up;
+            else if (delta.y < 0) dir = Dir.Down;
+            //UpdateAnimation(delta);
 
-            // 每步触发格子效果（仅针对 Water，不中断移动）
-            if (targetTile.type == TileType.Water)
+            // 开始移动动画
+            StartMoving(dir);
+
+            // 开始平滑移动
+            Vector3 startPos = transform.position;
+            Vector3 endPos = targetTile.transform.position;
+            float elapsed = 0f;
+            while (elapsed < stepDuration)
             {
-                Debug.Log("踩到水，扣血！");
-                GameManager.Instance.TakeDamage(4); // 调用统一伤害处理
+                elapsed += Time.deltaTime;
+                float t = elapsed / stepDuration;
+                transform.position = Vector3.Lerp(startPos, endPos, t);
+                yield return null;
             }
+            transform.position = endPos; // 确保精确到达
+            gridPos = step;
 
-            // 注意：不再每步触发格子效果
-            yield return new WaitForSeconds(0.2f);
+            // 每步扣血逻辑（保持不变）
+            int damage = 2;
+            if (targetTile.type == TileType.Water)
+                damage = 6;
+            else if (GameManager.Instance.isInCampusRun && !GameManager.Instance.hasBike)
+                damage = 4;
+            else if (GameManager.Instance.halfDamageMode)
+            {
+                GameManager.Instance.ApplyHalfDamage();
+                damage = 0;
+            }
+            if (damage > 0)
+                GameManager.Instance.TakeDamage(damage);
+
+            // 可选：每步结束后短暂停顿（如果需要更明显的步调感）
+            // yield return new WaitForSeconds(0.05f);
         }
 
+        // 移动结束，停止动画
+        //UpdateAnimation(Vector2Int.zero);
+        //isMoving = false;
+        StopMoving();
         isMoving = false;
 
         // 移动结束后，如果有待触发的事件格子，则触发事件
@@ -221,9 +323,97 @@ public class PlayerController : MonoBehaviour
             TriggerTileEffect(pendingEventPos.Value);
             pendingEventPos = null;
         }
-
         Debug.Log("移动结束");
     }
+
+    //private System.Collections.IEnumerator MoveAlongPath(List<Vector2Int> path)
+    //{
+    //    isMoving = true;
+
+    //    foreach (Vector2Int step in path)
+    //    {
+    //        Tile targetTile = map.GetTile(step);
+    //        if (targetTile == null) break;
+    //        // ... 移动代码 ...
+    //        gridPos = step;
+    //        transform.position = targetTile.transform.position;
+
+    //        // 计算本步应扣血量（默认2）
+    //        int damage = 2;
+
+    //        // 水面优先
+    //        if (targetTile.type == TileType.Water)
+    //        {
+    //            damage = 4;
+    //        }
+    //        // 校园跑未骑车（且不在水面）
+    //        else if (GameManager.Instance.isInCampusRun && !GameManager.Instance.hasBike)
+    //        {
+    //            damage = 4;
+    //        }
+    //        // 半伤模式（且不在水面，且不在校园跑未骑车）
+    //        else if (GameManager.Instance.halfDamageMode)
+    //        {
+    //            // 半伤模式使用累积扣血，不直接赋值 damage
+    //            GameManager.Instance.ApplyHalfDamage();
+    //            damage = 0; // 避免重复扣血
+    //        }
+    //        // 否则 damage = 2
+
+    //        if (damage > 0)
+    //            GameManager.Instance.TakeDamage(damage);
+
+    //        yield return new WaitForSeconds(0.2f);
+    //    }
+
+    //    //foreach (Vector2Int step in path)
+    //    //{
+    //    //    // 检查下一步是否可走
+    //    //    if (!map.IsWalkable(step))
+    //    //    {
+    //    //        Debug.Log($"路径中格子 {step} 变得不可走，移动中断");
+    //    //        break;
+    //    //    }
+
+    //    //    Tile targetTile = map.GetTile(step);
+    //    //    if (targetTile == null) break;
+
+    //    //    // 移动
+    //    //    gridPos = step;
+    //    //    transform.position = targetTile.transform.position;
+
+    //    //    if (GameManager.Instance.isInCampusRun && !GameManager.Instance.hasBike)
+    //    //    {
+    //    //        Debug.Log("校园跑中，每步扣4血（可能减半）");
+    //    //        GameManager.Instance.TakeDamageHalf(4);
+    //    //    }
+
+    //    //    // 每步触发格子效果（仅针对 Water，不中断移动）
+    //    //    if (targetTile.type == TileType.Water)
+    //    //    {
+    //    //        Debug.Log("踩到水，扣血！");
+    //    //        GameManager.Instance.TakeDamage(4); // 调用统一伤害处理
+    //    //    }
+
+    //    //    GameManager.Instance.ApplyHalfDamage();
+
+    //    //    // 注意：不再每步触发格子效果
+    //    //    yield return new WaitForSeconds(0.2f);
+    //    //}
+
+    //    GameManager.Instance.UpdateDistanceDisplay(gridPos);
+
+    //    isMoving = false;
+
+    //    // 移动结束后，如果有待触发的事件格子，则触发事件
+    //    if (pendingEventPos != null)
+    //    {
+    //        TriggerTileEffect(pendingEventPos.Value);
+    //        pendingEventPos = null;
+    //    }
+
+    //    Debug.Log("移动结束");
+    //}
 
     TileEffectResult TriggerTileEffect(Vector2Int pos)
     {
@@ -238,6 +428,28 @@ public class PlayerController : MonoBehaviour
                 return TileEffectResult.Continue;
 
             case TileType.Event:
+                // 优先检查终点事件
+                EndPointEvent endPoint = map.GetTile(pos).GetComponent<EndPointEvent>();
+                if (endPoint != null)
+                {
+                    endPoint.Trigger();
+                    return TileEffectResult.Stop;
+                }
+                // 然后检查校园跑事件
+                CampusRunEvent campusRun = map.GetTile(pos).GetComponent<CampusRunEvent>();
+                if (campusRun != null)
+                {
+                    campusRun.Trigger();
+                    return TileEffectResult.Stop;
+                }
+                CampusRunEndEvent campusEnd = map.GetTile(pos).GetComponent<CampusRunEndEvent>();
+                if (campusEnd != null)
+                {
+                    campusEnd.Trigger();
+                    return TileEffectResult.Stop;
+                }
+
+                // 原有的事件链
                 MultiStepEvent multi = map.GetTile(pos).GetComponent<MultiStepEvent>();
                 if (multi != null) multi.Trigger();
                 else

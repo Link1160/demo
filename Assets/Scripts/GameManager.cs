@@ -17,6 +17,68 @@ public class GameManager : MonoBehaviour
     private bool isInEvent = false;
     public bool IsInEvent => isInEvent;
 
+    public bool isInCampusRun = false;   // 是否正在校园跑中
+    public bool hasBike = false;         // 是否骑了自行车
+
+    public bool halfDamageMode = false;
+    private float accumulatedHalfDamage = 0f;
+    private float accumulatedDamage = 0f;   // 用于半伤模式累积伤害
+
+    public Vector2Int endPointPos;   // 终点坐标，在 Inspector 中手动填写
+    public TMP_Text distanceText;        // 显示距离的 UI 文本（拖入）
+    public void EnableHalfDamage()
+    {
+        halfDamageMode = true;
+        accumulatedHalfDamage = 0f;
+    }
+
+    public void WinGame()
+    {
+        // 计算分数 = 当前血量 + 护盾值
+        int finalScore = health + shield;
+        // 保存分数到静态变量或 PlayerPrefs，供胜利场景读取
+        PlayerPrefs.SetInt("FinalScore", finalScore);
+        PlayerPrefs.Save();
+        // 加载胜利场景
+        UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryScene");
+    }
+
+    public void LoseGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("DefeatScene");
+    }
+
+    public void ApplyHalfDamage()
+    {
+        if (!halfDamageMode) return;
+        accumulatedHalfDamage += 0.5f;
+        int intDamage = Mathf.FloorToInt(accumulatedHalfDamage);
+        if (intDamage > 0)
+        {
+            accumulatedHalfDamage -= intDamage;
+            TakeDamage(intDamage);
+        }
+    }
+
+    // 修改 TakeDamage 方法，支持浮点累积（可选，但为了半伤模式，我们新增一个方法）
+    public void TakeDamageHalf(int baseDamage)
+    {
+        if (halfDamageMode)
+        {
+            accumulatedDamage += baseDamage * 0.5f;
+            int intDamage = Mathf.FloorToInt(accumulatedDamage);
+            if (intDamage > 0)
+            {
+                accumulatedDamage -= intDamage;
+                TakeDamage(intDamage);
+            }
+        }
+        else
+        {
+            TakeDamage(baseDamage);
+        }
+    }
+
     public void SetInEvent(bool value)
     {
         isInEvent = value;
@@ -44,7 +106,7 @@ public class GameManager : MonoBehaviour
             {
                 health = 0;
                 Debug.Log("游戏失败");
-                // 可以触发游戏结束逻辑（例如加载失败界面）
+                LoseGame();
             }
         }
 
@@ -89,6 +151,15 @@ public class GameManager : MonoBehaviour
         else
             Debug.LogWarning("shieldText 未赋值");
     }
+    public void UpdateDistanceDisplay(Vector2Int playerPos)
+    {
+        if (distanceText != null)
+        {
+            int distance = Mathf.Abs(playerPos.x - endPointPos.x);
+            distanceText.text = $"距离终点: {distance} 格";
+        }
+    }
+
     public void ChangeHealth(int delta)
     {
         health += delta;
