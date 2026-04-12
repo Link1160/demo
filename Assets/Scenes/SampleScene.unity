@@ -38062,9 +38062,22 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
+    - endsEvent: 0
+      buttonText: "\u4E3A\u5154\u5B50\u4EEC\u5531\u9996\u6B4C"
+      stepCost: 0
+      spiritReward: 0
+      successMessage: 
+      nextStepIndex: 4
+      increaseMaxHealth: 0
+      increaseHealth: 0
+      hpChange: 0
+      addShield: 0
+      becomeWalkableOnComplete: 0
+      moveToDoorRight: 0
+      spawnSign: 0
   - description: "\u5154\uFF0C\u601D\u8003\n\u5782\u8033\uFF0C\u70B8\u6BDB\uFF0C\u8EBA\u5E73\n\u5154\uFF0C\u592A\u62FC\u547D\u4E86"
     options:
-    - endsEvent: 0
+    - endsEvent: 1
       buttonText: "\"\u6211\u4ECE\u6765\u6CA1\u6709\u89C9\u5F97\u4E0B\u68CB\u5F00\u5FC3\u8FC7\""
       stepCost: 0
       spiritReward: 0
@@ -38077,12 +38090,12 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-    - endsEvent: 0
-      buttonText: "\u4F46\u4F60\u4F3C\u4E4E\u4E50\u5728\u5176\u4E2D\uFF08hp+20\uFF09"
+    - endsEvent: 1
+      buttonText: "\u4F46\u4F60\u4F3C\u4E4E\u4E50\u5728\u5176\u4E2D"
       stepCost: 0
       spiritReward: 0
-      successMessage: 
-      nextStepIndex: 4
+      successMessage: "\uFF08hp+20\uFF09"
+      nextStepIndex: -1
       increaseMaxHealth: 0
       increaseHealth: 0
       hpChange: 20
@@ -38090,24 +38103,9 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: 
-    options:
-    - endsEvent: 0
-      buttonText: "\u4E3A\u5154\u5B50\u4EEC\u5531\u9996\u6B4C"
-      stepCost: 0
-      spiritReward: 0
-      successMessage: 
-      nextStepIndex: 5
-      increaseMaxHealth: 0
-      increaseHealth: 0
-      hpChange: 0
-      addShield: 0
-      becomeWalkableOnComplete: 0
-      moveToDoorRight: 0
-      spawnSign: 0
   - description: "\u4F60\u597D\u5389\u5BB3\uFF0C\u6B63\u597D\u6211\u4EEC\u4F1A\u4E50\u5668\uFF0C\u6211\u4EEC\u7EC4\u4E00\u8F88\u5B50\u4E50\u961F\u5427"
     options:
-    - endsEvent: 0
+    - endsEvent: 1
       buttonText: "\u597D!!!!!"
       stepCost: 0
       spiritReward: 0

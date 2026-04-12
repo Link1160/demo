@@ -64,7 +64,7 @@ public class CampusRunEndEvent : MonoBehaviour
             else
             {
                 GameManager.Instance.EnableHalfDamage();
-                rewardMsg = "你感觉身体更结实了（接下来20步每步额外扣0.5血）";
+                rewardMsg = "你感觉身体更结实了（从此每两步扣一滴血）";
             }
             GameManager.Instance.isInCampusRun = false;
             GameManager.Instance.hasBike = false;
