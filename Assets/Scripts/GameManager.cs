@@ -1,6 +1,7 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,9 +44,27 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryScene");
     }
 
+    //public void LoseGame()
+    //{
+    //    UnityEngine.SceneManagement.SceneManager.LoadScene("DefeatScene");
+    //}
+    //public void LoseGame()
+    //{
+    //    // 停止玩家移动
+    //    PlayerController player = FindObjectOfType<PlayerController>();
+    //    if (player != null)
+    //        player.ForceStopMoving();
+
+    //    // 加载失败场景
+    //    SceneManager.LoadScene("DefeatScene");
+    //}
     public void LoseGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("DefeatScene");
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
+            player.ForceStopMoving();
+
+        SceneManager.LoadScene("DefeatScene");
     }
 
     public void ApplyHalfDamage()
@@ -156,7 +175,11 @@ public class GameManager : MonoBehaviour
         if (distanceText != null)
         {
             int distance = Mathf.Abs(playerPos.x - endPointPos.x);
-            distanceText.text = $"距离终点: {distance} 格";
+            distanceText.text = $"final:{distance} ";
+        }
+        else
+        {
+            Debug.LogWarning("distanceText 未赋值");
         }
     }
 
@@ -183,7 +206,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 切换场景时不销毁
+            //DontDestroyOnLoad(gameObject); // 切换场景时不销毁
         }
         else
         {
