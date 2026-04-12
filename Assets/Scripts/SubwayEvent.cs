@@ -2,74 +2,67 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class CampusRunEvent : MonoBehaviour
+public class SubwayEvent : MonoBehaviour
 {
-    public GameObject bikeObject; // 自行车图片对象，在 Inspector 中拖入
+    public Vector2Int targetPos;   // 传送目标坐标（另一个地铁站的位置）
 
     public void Trigger()
     {
-        // 如果已经骑过车且格子已变为可走，则事件已彻底结束
-        if (GameManager.Instance.hasBike && GetComponent<Tile>().type == TileType.Ground)
-            return;
-
         GameManager.Instance.SetInEvent(true);
-
-        // 如果已经接取了校园跑任务（isInCampusRun 为 true），则直接显示自行车选择面板
-        if (GameManager.Instance.isInCampusRun)
-        {
-            ShowBikeChoice();
-        }
-        else
-        {
-            ShowFirstPanel();
-        }
+        ShowPanel();
     }
 
-    private void ShowFirstPanel()
+    void ShowPanel()
     {
         GameObject panel = CreatePanel();
-        ShowDescription(panel, "是否在此接取校园跑任务？");
+        ShowDescription(panel, "2号线地铁站，通向另一站");
         float y = -150f;
-        CreateButton(panel, "不跑，以后再说", () => {
+        CreateButton(panel, "离开", () => {
             GameManager.Instance.SetInEvent(false);
             Destroy(panel);
         }, y);
         y -= 60f;
-        CreateButton(panel, "开始校园跑（从此每走1格扣4滴血）", () => {
-            GameManager.Instance.isInCampusRun = true;
+        CreateButton(panel, "坐地铁 (hp-10)", () => {
+            if (GameManager.Instance.health <= 10)
+            {
+                // 血量不足，提示无法传送（可选）
+                Debug.Log("血量不足，无法坐地铁");
+                GameManager.Instance.SetInEvent(false);
+                Destroy(panel);
+                return;
+            }
+            GameManager.Instance.TakeDamage(10);
+            // 传送玩家
+            PlayerController player = FindObjectOfType<PlayerController>();
+            if (player != null)
+            {
+                player.TeleportTo(targetPos);
+            }
+            GameManager.Instance.SetInEvent(false);
             Destroy(panel);
-            ShowBikeChoice();
+            StartCoroutine(ShowMessage("大学生的校车 be like..."));
         }, y);
     }
 
-    private void ShowBikeChoice()
+    IEnumerator ShowMessage(string msg)
     {
+        GameManager.Instance.SetInEvent(true);
         GameObject panel = CreatePanel();
-        ShowDescription(panel, "你要骑自行车吗？");
-        float y = -150f;
-        CreateButton(panel, "我不骑！", () => {
-            GameManager.Instance.hasBike = false;
-            GameManager.Instance.SetInEvent(false);
-            Destroy(panel);
-        }, y);
-        y -= 60f;
-        CreateButton(panel, "骑！骑的就是自行车！（免疫额外扣血效果）", () => {
-            GameManager.Instance.hasBike = true;
-            if (bikeObject != null) Destroy(bikeObject);
-            Tile tile = GetComponent<Tile>();
-            if (tile != null) tile.type = TileType.Ground;
-            Destroy(this); // 移除自身脚本，不再触发
-            GameManager.Instance.SetInEvent(false);
-            Destroy(panel);
-        }, y);
+        Text txt = CreateText(panel.transform, msg, 24);
+        txt.rectTransform.anchorMin = new Vector2(0.1f, 0.1f);
+        txt.rectTransform.anchorMax = new Vector2(0.9f, 0.9f);
+        txt.horizontalOverflow = HorizontalWrapMode.Wrap;
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        GameManager.Instance.SetInEvent(false);
+        Destroy(panel);
     }
 
-    // ---------- UI 辅助方法 ----------
+    // ---------- UI 辅助方法（复用）----------
     private GameObject CreatePanel()
     {
         Canvas canvas = FindObjectOfType<Canvas>();
         if (canvas == null) return null;
-        GameObject panel = new GameObject("CampusRunPanel");
+        GameObject panel = new GameObject("SubwayPanel");
         panel.transform.SetParent(canvas.transform, false);
         Image bg = panel.AddComponent<Image>();
         bg.color = new Color(0, 0, 0, 0.8f);

@@ -359,8 +359,8 @@ public class MultiStepEvent : MonoBehaviour
         txt.color = Color.white;
         txt.horizontalOverflow = HorizontalWrapMode.Wrap;
         RectTransform rect = txt.GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(0.1f, 0.3f);
-        rect.anchorMax = new Vector2(0.9f, 0.7f);
+        rect.anchorMin = new Vector2(0f, 0.2f);
+        rect.anchorMax = new Vector2(1f, 0.8f);
         rect.offsetMin = Vector2.zero;
         rect.offsetMax = Vector2.zero;
     }

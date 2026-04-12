@@ -2,66 +2,111 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class CampusRunEvent : MonoBehaviour
+public class BluePlanetEvent : MonoBehaviour
 {
-    public GameObject bikeObject; // 自行车图片对象，在 Inspector 中拖入
+    public Sprite brokenSprite;   // 破损贴图
+    public Sprite fixedSprite;    // 修复后贴图
+    private bool isFixed = false;
+    private SpriteRenderer overlaySprite;
 
-    public void Trigger()
+    void Start()
     {
-        // 如果已经骑过车且格子已变为可走，则事件已彻底结束
-        if (GameManager.Instance.hasBike && GetComponent<Tile>().type == TileType.Ground)
-            return;
-
-        GameManager.Instance.SetInEvent(true);
-
-        // 如果已经接取了校园跑任务（isInCampusRun 为 true），则直接显示自行车选择面板
-        if (GameManager.Instance.isInCampusRun)
+        // 创建覆盖图片的子物体（如果不存在）
+        Transform overlay = transform.Find("BluePlanetOverlay");
+        if (overlay == null)
         {
-            ShowBikeChoice();
+            GameObject obj = new GameObject("BluePlanetOverlay");
+            obj.transform.SetParent(transform);
+            obj.transform.localPosition = Vector3.zero;
+            obj.transform.localScale = Vector3.one;
+            overlaySprite = obj.AddComponent<SpriteRenderer>();
+            overlaySprite.sortingOrder = 10; // 确保显示在地面之上
         }
         else
         {
-            ShowFirstPanel();
+            overlaySprite = overlay.GetComponent<SpriteRenderer>();
         }
+        // 显示当前状态的图片
+        UpdateOverlaySprite();
     }
 
-    private void ShowFirstPanel()
+    void UpdateOverlaySprite()
+    {
+        if (overlaySprite == null) return;
+        if (isFixed && fixedSprite != null)
+            overlaySprite.sprite = fixedSprite;
+        else if (brokenSprite != null)
+            overlaySprite.sprite = brokenSprite;
+    }
+
+    public void Trigger()
+    {
+        if (isFixed) return;
+        GameManager.Instance.SetInEvent(true);
+        ShowMainPanel();
+    }
+
+    void ShowMainPanel()
     {
         GameObject panel = CreatePanel();
-        ShowDescription(panel, "是否在此接取校园跑任务？");
+        ShowDescription(panel, "破损得不成样子的留声机");
         float y = -150f;
-        CreateButton(panel, "不跑，以后再说", () => {
-            GameManager.Instance.SetInEvent(false);
-            Destroy(panel);
-        }, y);
+        CreateButton(panel, "离开", () => { GameManager.Instance.SetInEvent(false); Destroy(panel); }, y);
         y -= 60f;
-        CreateButton(panel, "开始校园跑（从此每走1格扣4滴血）", () => {
-            GameManager.Instance.isInCampusRun = true;
+        CreateButton(panel, "尝试修复（hp-10）", () => {
+            GameManager.Instance.TakeDamage(10);
             Destroy(panel);
-            ShowBikeChoice();
+            ShowAfterFirstRepair();
         }, y);
     }
 
-    private void ShowBikeChoice()
+    void ShowAfterFirstRepair()
     {
         GameObject panel = CreatePanel();
-        ShowDescription(panel, "你要骑自行车吗？");
+        ShowDescription(panel, "你一顿修，留声机更坏了");
         float y = -150f;
-        CreateButton(panel, "我不骑！", () => {
-            GameManager.Instance.hasBike = false;
-            GameManager.Instance.SetInEvent(false);
-            Destroy(panel);
-        }, y);
+        CreateButton(panel, "放弃离开", () => { GameManager.Instance.SetInEvent(false); Destroy(panel); }, y);
         y -= 60f;
-        CreateButton(panel, "骑！骑的就是自行车！（免疫额外扣血效果）", () => {
-            GameManager.Instance.hasBike = true;
-            if (bikeObject != null) Destroy(bikeObject);
-            Tile tile = GetComponent<Tile>();
-            if (tile != null) tile.type = TileType.Ground;
-            Destroy(this); // 移除自身脚本，不再触发
-            GameManager.Instance.SetInEvent(false);
+        CreateButton(panel, "再继续修（hp-10）", () => {
+            GameManager.Instance.TakeDamage(10);
             Destroy(panel);
+            ShowAfterSecondRepair();
         }, y);
+    }
+
+    void ShowAfterSecondRepair()
+    {
+        GameObject panel = CreatePanel();
+        ShowDescription(panel, "外形完整了，但就是不响");
+        float y = -150f;
+        CreateButton(panel, "放弃离开", () => { GameManager.Instance.SetInEvent(false); Destroy(panel); }, y);
+        y -= 60f;
+        CreateButton(panel, "狠狠一拍（hp-5）", () => {
+            GameManager.Instance.TakeDamage(5);
+            Destroy(panel);
+            FinalFix();
+        }, y);
+    }
+
+    void FinalFix()
+    {
+        GameManager.Instance.AddShield(65);
+        isFixed = true;
+        UpdateOverlaySprite();
+        StartCoroutine(ShowSuccessMessage("留声机传出悠扬的歌声\n~泱泱汉水，浩浩长江~\n你感觉浑身充满了力量（护盾+65）"));
+    }
+
+    IEnumerator ShowSuccessMessage(string msg)
+    {
+        GameManager.Instance.SetInEvent(true);
+        GameObject panel = CreatePanel();
+        Text txt = CreateText(panel.transform, msg, 24);
+        txt.rectTransform.anchorMin = new Vector2(0.1f, 0.1f);
+        txt.rectTransform.anchorMax = new Vector2(0.9f, 0.9f);
+        txt.horizontalOverflow = HorizontalWrapMode.Wrap;
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        GameManager.Instance.SetInEvent(false);
+        Destroy(panel);
     }
 
     // ---------- UI 辅助方法 ----------
@@ -69,7 +114,7 @@ public class CampusRunEvent : MonoBehaviour
     {
         Canvas canvas = FindObjectOfType<Canvas>();
         if (canvas == null) return null;
-        GameObject panel = new GameObject("CampusRunPanel");
+        GameObject panel = new GameObject("BluePlanetPanel");
         panel.transform.SetParent(canvas.transform, false);
         Image bg = panel.AddComponent<Image>();
         bg.color = new Color(0, 0, 0, 0.8f);

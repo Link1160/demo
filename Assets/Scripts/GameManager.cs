@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         // 计算分数 = 当前血量 + 护盾值
         int finalScore = health + shield;
+        Debug.Log($"胜利，分数：{finalScore} (HP={health}, 护盾={shield})");
         // 保存分数到静态变量或 PlayerPrefs，供胜利场景读取
         PlayerPrefs.SetInt("FinalScore", finalScore);
         PlayerPrefs.Save();

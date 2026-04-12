@@ -590,7 +590,10 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8551839732871317754, guid: 8565e837d03a4e64685b2babc583ec04, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 569217961}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1448092677266419035, guid: 8565e837d03a4e64685b2babc583ec04, type: 3}
       insertIndex: -1
@@ -10564,9 +10567,9 @@ MonoBehaviour:
   successMessages:
   - "\u4F60\u9759\u9759\u77BB\u4EF0\u8FD9\u5C0A\u548C\u853C\u53EF\u4EB2\u53C8\u4E0D\u5931\u5A01\u4E25\u7684\u96D5\u50CF"
   - "\u4ED6\u4EFF\u4F5B\u6B63\u5BA3\u544A\u8FD9\u82CD\u832B\u5927\u5730\uFF0C\u552F\u543E\u8F88\u53EF\u4E3B\u4E16\u4E8B\u6C89\u6D6E\u3002"
-  - "\u4F60\u611F\u89C9\u5FC3\u6F6E\u6F8E\u6E43\u3002\uFF08\u62A4\u76FE+30\uFF09"
+  - "\u4F60\u611F\u89C9\u5FC3\u6F6E\u6F8E\u6E43\u3002\uFF08\u62A4\u76FE+100\uFF09"
   stepCost: 3
-  spiritReward: 30
+  spiritReward: 100
   hpChange: 0
   becomeWalkableOnComplete: 0
 --- !u!1001 &125015889
@@ -11417,6 +11420,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2420289350633237481, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 135906093}
+    - targetCorrespondingSourceObject: {fileID: 2420289350633237481, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 135906096}
   m_SourcePrefab: {fileID: 100100000, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
 --- !u!4 &135906091 stripped
 Transform:
@@ -11487,6 +11493,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 0, y: 0}
   type: 0
+--- !u!114 &135906096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135906092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4907aa12d574e44095d080dd16c4f14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPos: {x: 75, y: 3}
 --- !u!1 &136031189 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1448092677266419035, guid: 8565e837d03a4e64685b2babc583ec04, type: 3}
@@ -16208,7 +16227,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -140, y: 5}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &203907358
 MonoBehaviour:
@@ -17914,7 +17933,7 @@ MonoBehaviour:
   initialDescription: "\u6D77\u5E02\u8703\u697C\u822C\uFF0C\u524D\u65B9\u662F\u5154\u5B50\u548C\u8239\u7684\u865A\u5F71"
   initialStepCost: 0
   steps:
-  - description: 
+  - description: "\u6D77\u5E02\u8703\u697C\u822C\uFF0C\u524D\u65B9\u662F\u5154\u5B50\u548C\u8239\u7684\u865A\u5F71"
     options:
     - endsEvent: 0
       buttonText: "\u79BB\u5F00"
@@ -17958,7 +17977,7 @@ MonoBehaviour:
       moveToDoorRight: 0
       spawnSign: 0
     - endsEvent: 1
-      buttonText: "\u73B0\u5728\u6392\u6C34\u7CFB\u7EDF\u5DF2\u7ECF\u5F88\u4E0D\u9519\u4E86\uFF0C\u4F60\u4E0D\u5FC5\u518D\u8FD9\u4E48\u8F9B\u82E6\u4E86"
+      buttonText: "\u73B0\u5728\u6392\u6C34\u7CFB\u7EDF\u5DF2\u7ECF\u5F88\u597D\u4E86\uFF0C\u4F60\u4E0D\u5FC5\u518D\u8FD9\u4E48\u8F9B\u82E6\u4E86"
       stepCost: 0
       spiritReward: 0
       successMessage: "\u662F\u5417\uFF1F\u771F\u597D\u554A\u2014\u2014\u5F80\u65E5\u7684\u865A\u5F71\u9010\u6E10\u6D88\u5931\uFF08\u62A4\u76FE+10\uFF0Chp+10\uFF09"
@@ -22594,6 +22613,8 @@ Transform:
   - {fileID: 188085471}
   - {fileID: 1664764326}
   - {fileID: 255061473}
+  - {fileID: 1856358980}
+  - {fileID: 1002826216}
   m_Father: {fileID: 843286035}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &269570689
@@ -24638,7 +24659,7 @@ MonoBehaviour:
   initialDescription: "\u4F60\u770B\u5230\u6559\u5B66\u697C\u5916\u6324\u6EE1\u4E86\u4EBA\u548C\u8F66\u3002"
   initialStepCost: 0
   steps:
-  - description: 
+  - description: "\u4F60\u770B\u5230\u6559\u5B66\u697C\u5916\u6324\u6EE1\u4E86\u4EBA\u548C\u8F66\u3002"
     options:
     - endsEvent: 0
       buttonText: "\u79BB\u5F00"
@@ -24672,11 +24693,11 @@ MonoBehaviour:
       buttonText: "\u8D70A\u680B\u697C\u68AF"
       stepCost: 0
       spiritReward: 0
-      successMessage: "\u722C\u697C\u68AF\u953B\u70BC\u8EAB\u4F53\uFF08hp-30\uFF0C\u62A4\u76FE+40\uFF09"
+      successMessage: "\u722C\u697C\u68AF\u953B\u70BC\u8EAB\u4F53\uFF08\u62A4\u76FE+40\uFF09"
       nextStepIndex: -1
       increaseMaxHealth: 0
       increaseHealth: 0
-      hpChange: -30
+      hpChange: 0
       addShield: 40
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
@@ -24685,11 +24706,11 @@ MonoBehaviour:
       buttonText: "\u968F\u4FBF\u4E0A\u4E2A\u697C\u68AF"
       stepCost: 0
       spiritReward: 0
-      successMessage: "\u4F60\u8981\u88AB\u6324\u6B7B\u4E86\uFF08hp-40\uFF09"
+      successMessage: "\u4F60\u8981\u88AB\u6324\u6B7B\u4E86\uFF08hp-30\uFF09"
       nextStepIndex: -1
       increaseMaxHealth: 0
       increaseHealth: 0
-      hpChange: -40
+      hpChange: -30
       addShield: 0
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
@@ -37983,7 +38004,7 @@ MonoBehaviour:
   initialDescription: "\u4F60\u770B\u5230\u4E86\u4E94\u53EA\u5154\u5B9D\u5B9D"
   initialStepCost: 0
   steps:
-  - description: 
+  - description: "\u4F60\u770B\u5230\u4E86\u4E94\u53EA\u5154\u5B9D\u5B9D"
     options:
     - endsEvent: 0
       buttonText: "\u79BB\u5F00"
@@ -38044,7 +38065,20 @@ MonoBehaviour:
   - description: "\u5154\uFF0C\u601D\u8003\n\u5782\u8033\uFF0C\u70B8\u6BDB\uFF0C\u8EBA\u5E73\n\u5154\uFF0C\u592A\u62FC\u547D\u4E86"
     options:
     - endsEvent: 0
-      buttonText: ......
+      buttonText: "\"\u6211\u4ECE\u6765\u6CA1\u6709\u89C9\u5F97\u4E0B\u68CB\u5F00\u5FC3\u8FC7\""
+      stepCost: 0
+      spiritReward: 0
+      successMessage: 
+      nextStepIndex: -1
+      increaseMaxHealth: 0
+      increaseHealth: 0
+      hpChange: 0
+      addShield: 0
+      becomeWalkableOnComplete: 0
+      moveToDoorRight: 0
+      spawnSign: 0
+    - endsEvent: 0
+      buttonText: "\u4F46\u4F60\u4F3C\u4E4E\u4E50\u5728\u5176\u4E2D\uFF08hp+20\uFF09"
       stepCost: 0
       spiritReward: 0
       successMessage: 
@@ -38056,7 +38090,7 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\"\u6211\u4ECE\u6765\u6CA1\u6709\u89C9\u5F97\u4E0B\u68CB\u5F00\u5FC3\u8FC7\",\n\u4F46\u4F60\u4F3C\u4E4E\u4E50\u5728\u5176\u4E2D\uFF08hp+20\uFF09"
+  - description: 
     options:
     - endsEvent: 0
       buttonText: "\u4E3A\u5154\u5B50\u4EEC\u5531\u9996\u6B4C"
@@ -42699,6 +42733,81 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 0, y: 0}
   type: 0
+--- !u!1 &517166130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 517166131}
+  - component: {fileID: 517166133}
+  - component: {fileID: 517166132}
+  m_Layer: 5
+  m_Name: Heartlcon (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &517166131
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517166130}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1725863178}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -140, y: -33}
+  m_SizeDelta: {x: 40, y: 40}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &517166132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517166130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 486726959, guid: d1dfd54e51e4120478451331c3fb40c6, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &517166133
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517166130}
+  m_CullTransparentMesh: 1
 --- !u!1 &517188430 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7194460126918956866, guid: 2113078456fcc4949945eecb51ca1756, type: 3}
@@ -46920,6 +47029,90 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 995724387}
   m_SourcePrefab: {fileID: 100100000, guid: 8565e837d03a4e64685b2babc583ec04, type: 3}
+--- !u!1 &569217960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 569217961}
+  - component: {fileID: 569217962}
+  m_Layer: 0
+  m_Name: FN
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &569217961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569217960}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3911678}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &569217962
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569217960}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 838121775
+  m_SortingLayer: 2
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 2075431416, guid: 8d6ad6333a2988f4f9250047ed13bdb4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &570573369 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1448092677266419035, guid: 8565e837d03a4e64685b2babc583ec04, type: 3}
@@ -50681,7 +50874,7 @@ MonoBehaviour:
   initialDescription: "\u4F60\u770B\u5230\u5F88\u591A\u4EBA\u6765\u6765\u5F80\u5F80\u51FA\u5165\u4E00\u680B\u9EC4\u767D\u8272\u7684\u5EFA\u7B51\uFF0C\r\n\u6709\u4E00\u4E2A\u7626\u5C0F\u7684\u4EBA\u5F71\u8E72\u5728\u95E8\u524D\u4E00\u52A8\u4E0D\u52A8"
   initialStepCost: 0
   steps:
-  - description: 
+  - description: "\u4F60\u770B\u5230\u5F88\u591A\u4EBA\u6765\u6765\u5F80\u5F80\u51FA\u5165\u4E00\u680B\u9EC4\u767D\u8272\u7684\u5EFA\u7B51\uFF0C\r\n\u6709\u4E00\u4E2A\u7626\u5C0F\u7684\u4EBA\u5F71\u8E72\u5728\u95E8\u524D\u4E00\u52A8\u4E0D\u52A8"
     options:
     - endsEvent: 0
       buttonText: "\u79BB\u5F00"
@@ -50724,7 +50917,7 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u554A\uFF01\u6211\u6211\u3001\u6211\u2026\u2026\u6211\u60F3\u7EC4\u5EFA\u4E00\u4E2A\u4E50\u961F\uFF0C\n\u6211\u4F1A\u5F39\u5409\u4ED6\uFF0C\u73B0\u5728\u2026\u2026\n\u8FD8\u5DEE\u4E00\u4E2A\u4E3B\u5531\u5C31\u662F\u627E\u4E0D\u5230\u2026\u2026"
+  - description: "\u554A\uFF01\u6211\u6211\u3001\u6211\u2026\u2026\u6211\u60F3\u7EC4\u5EFA\u4E00\u4E2A\u4E50\u961F\uFF0C\n\u6211\u4F1A\u5F39\u5409\u4ED6\uFF0C\u73B0\u5728\u2026\u2026\n\u8FD8\u5DEE\u4E00\u4E2A\u4E3B\u5531\uFF0C\u5C31\u662F\u627E\u4E0D\u5230\u2026\u2026"
     options:
     - endsEvent: 0
       buttonText: "\u8F7B\u8F7B\u62CD\u62CD\u5973\u5B69\u7684\u80A9\u8180\u5E76\u79BB\u5F00"
@@ -50740,7 +50933,7 @@ MonoBehaviour:
       moveToDoorRight: 0
       spawnSign: 0
     - endsEvent: 0
-      buttonText: "\u5973\u5B69\u671B\u7740\u4F60\u8FDC\u53BB\uFF0C\u4EC0\u4E48\u4E8B\u90FD\u6CA1\u6709\u53D1\u751F"
+      buttonText: "\u54FC\u5531\u4F60\u542C\u8FC7\u7684\u6B4C"
       stepCost: 0
       spiritReward: 0
       successMessage: 
@@ -50752,7 +50945,7 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u554A\uFF01\u6211\u6211\u3001\u6211\u2026\u2026\u6211\u60F3\u7EC4\u5EFA\u4E00\u4E2A\u4E50\u961F\uFF0C\n\u6211\u4F1A\u5F39\u5409\u4ED6\uFF0C\u73B0\u5728\u2026\u2026\n\u8FD8\u5DEE\u4E00\u4E2A\u4E3B\u5531\u5C31\u662F\u627E\u4E0D\u5230\u2026\u2026"
+  - description: "\u54FC\u5531\u4F60\u542C\u8FC7\u7684\u6B4C"
     options:
     - endsEvent: 0
       buttonText: "\u9009\u62E9\u300A\u82CD\u7A79\u7A7A\u300B\u300A\u5343\u672C\u685C\u300B"
@@ -50780,7 +50973,7 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u5973\u5B69\u6FC0\u52A8\u5730\u770B\u5411\u4F60 --\u201C\u4F60\u2026\u2026\u4F60\u80FD\u2026\u2026\u6765\uFF0C\u6765\u6211\u4EEC\u4E50\u961F\u2026\u2026\u5F53\u4E3B\u5531\u5417\uFF1F\uFF01\u201D"
+  - description: "\u5973\u5B69\u6FC0\u52A8\u5730\u770B\u5411\u4F60\r\n--\u201C\u4F60\u2026\u2026\u4F60\u80FD\u2026\u2026\u6765\uFF0C\u6765\u6211\u4EEC\u4E50\u961F\u2026\u2026\u5F53\u4E3B\u5531\u5417\uFF1F\uFF01\u201D"
     options:
     - endsEvent: 1
       buttonText: "\u6211\u771F\u7684\u53EF\u4EE5\u5417\uFF1F"
@@ -50790,8 +50983,8 @@ MonoBehaviour:
       nextStepIndex: -1
       increaseMaxHealth: 0
       increaseHealth: 0
-      hpChange: 40
-      addShield: 0
+      hpChange: 0
+      addShield: 40
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
@@ -52872,6 +53065,90 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 0, y: 0}
   type: 0
+--- !u!1 &672759897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 672759898}
+  - component: {fileID: 672759899}
+  m_Layer: 0
+  m_Name: BJY
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &672759898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672759897}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.55, y: -0.6, z: 0}
+  m_LocalScale: {x: 2.8, y: 2.9, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 985318032}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &672759899
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672759897}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 838121775
+  m_SortingLayer: 2
+  m_SortingOrder: 10
+  m_Sprite: {fileID: -462856249, guid: 7f9b4711c761a8943933b13cd6eee55e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1001 &674497376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53668,7 +53945,7 @@ MonoBehaviour:
   initialDescription: "\u4F60\u770B\u5230\u4E86\u4E00\u53EA\u5154\u5B50\uFF0C\u4F3C\u4E4E\u6709\u70B9\u8FF7\u8DEF"
   initialStepCost: 0
   steps:
-  - description: 
+  - description: "\u4F60\u770B\u5230\u4E86\u4E00\u53EA\u5154\u5B50\uFF0C\u4F3C\u4E4E\u6709\u70B9\u8FF7\u8DEF"
     options:
     - endsEvent: 0
       buttonText: "\u79BB\u5F00"
@@ -71685,6 +71962,90 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 0, y: 0}
   type: 0
+--- !u!1 &919722760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 919722761}
+  - component: {fileID: 919722762}
+  m_Layer: 0
+  m_Name: XYPZD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &919722761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919722760}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 1.8, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1635472336}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &919722762
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919722760}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 838121775
+  m_SortingLayer: 2
+  m_SortingOrder: 10
+  m_Sprite: {fileID: -417911614, guid: 7f9b4711c761a8943933b13cd6eee55e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1001 &920112869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75621,7 +75982,7 @@ MonoBehaviour:
   initialDescription: "\u4F60\u6765\u5230\u4E00\u4E2A\u5341\u5B57\u8DEF\u53E3\uFF0C\u7EA2\u706F\u6B63\u4EAE\u7740"
   initialStepCost: 0
   steps:
-  - description: 
+  - description: "\u4F60\u6765\u5230\u4E00\u4E2A\u5341\u5B57\u8DEF\u53E3\uFF0C\u7EA2\u706F\u6B63\u4EAE\u7740"
     options:
     - endsEvent: 1
       buttonText: "\u6211\u559C\u6B22\u7EA2\u8272\uFF0C\u8D70\u55BD"
@@ -76620,7 +76981,7 @@ MonoBehaviour:
   initialDescription: "\u4E0D\u660E\u610F\u4E49\u7684\u7EAA\u5FF5\u7891"
   initialStepCost: 0
   steps:
-  - description: 
+  - description: "\u4E0D\u660E\u610F\u4E49\u7684\u7EAA\u5FF5\u7891"
     options:
     - endsEvent: 0
       buttonText: "\u79BB\u5F00"
@@ -77477,6 +77838,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2420289350633237481, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 973367026}
+    - targetCorrespondingSourceObject: {fileID: 2420289350633237481, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 973367029}
   m_SourcePrefab: {fileID: 100100000, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
 --- !u!4 &973367024 stripped
 Transform:
@@ -77547,6 +77911,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 0, y: 0}
   type: 0
+--- !u!114 &973367029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973367025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4907aa12d574e44095d080dd16c4f14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPos: {x: 82, y: -2}
 --- !u!1 &973730552 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1448092677266419035, guid: 8565e837d03a4e64685b2babc583ec04, type: 3}
@@ -78339,7 +78716,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 323595444093551685, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 672759898}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2420289350633237481, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
       insertIndex: -1
@@ -78347,6 +78727,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2420289350633237481, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 985318034}
+    - targetCorrespondingSourceObject: {fileID: 2420289350633237481, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 985318037}
   m_SourcePrefab: {fileID: 100100000, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
 --- !u!4 &985318032 stripped
 Transform:
@@ -78417,6 +78800,101 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 0, y: 0}
   type: 0
+--- !u!114 &985318037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985318033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55fdb55055fce7458bdd3db108dbbe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventName: 
+  initialDescription: "\u8FD9...\u8FD9\u7ADF\u7136\u662F\u767E\u666F\u56ED\uFF01\uFF01"
+  initialStepCost: 0
+  steps:
+  - description: "\u8FD9...\u8FD9\u7ADF\u7136\u662F\u767E\u666F\u56ED\uFF01\uFF01"
+    options:
+    - endsEvent: 0
+      buttonText: "\u79BB\u5F00"
+      stepCost: 0
+      spiritReward: 0
+      successMessage: 
+      nextStepIndex: -1
+      increaseMaxHealth: 0
+      increaseHealth: 0
+      hpChange: 0
+      addShield: 0
+      becomeWalkableOnComplete: 0
+      moveToDoorRight: 0
+      spawnSign: 0
+    - endsEvent: 0
+      buttonText: "\u8FDB\u53BB\u5403\u996D"
+      stepCost: 0
+      spiritReward: 0
+      successMessage: 
+      nextStepIndex: 1
+      increaseMaxHealth: 0
+      increaseHealth: 0
+      hpChange: 0
+      addShield: 0
+      becomeWalkableOnComplete: 0
+      moveToDoorRight: 0
+      spawnSign: 0
+  - description: "\u4F60\u6CA1\u89C1\u5230\u8FC7\u6BD4\u767E\u666F\u56ED\u66F4\u5927\u66F4\u58EE\u89C2\u7684\u98DF\u5802\u4E86"
+    options:
+    - endsEvent: 1
+      buttonText: "\u6765\u4EFD\u5927\u95F8\u87F9"
+      stepCost: 0
+      spiritReward: 0
+      successMessage: "\u8D85\u7EA7\u65E0\u654C\u597D\u5403\uFF01\uFF08\u62A4\u76FE+20\uFF09"
+      nextStepIndex: -1
+      increaseMaxHealth: 0
+      increaseHealth: 0
+      hpChange: 0
+      addShield: 20
+      becomeWalkableOnComplete: 0
+      moveToDoorRight: 0
+      spawnSign: 0
+    - endsEvent: 1
+      buttonText: "\u6765\u4EFD\u70E7\u70E4"
+      stepCost: 0
+      spiritReward: 0
+      successMessage: "\u8D85\u7EA7\u65E0\u654C\u597D\u5403\uFF08hp\u4E0A\u9650+40\uFF09"
+      nextStepIndex: -1
+      increaseMaxHealth: 40
+      increaseHealth: -40
+      hpChange: 0
+      addShield: 0
+      becomeWalkableOnComplete: 0
+      moveToDoorRight: 0
+      spawnSign: 0
+    - endsEvent: 1
+      buttonText: "\u4F9D\u65E7\u70ED\u5E72\u9762\u6253\u5E95"
+      stepCost: 0
+      spiritReward: 0
+      successMessage: "\u8FD8\u5F97\u662F\u672C\u5730\u7279\u8272...\uFF08\u62A4\u76FE+25\uFF09"
+      nextStepIndex: -1
+      increaseMaxHealth: 0
+      increaseHealth: 0
+      hpChange: 0
+      addShield: 25
+      becomeWalkableOnComplete: 0
+      moveToDoorRight: 0
+      spawnSign: 0
+  increaseMaxHealth: 0
+  evSprite: {fileID: 0}
+  evSprites: []
+  randomEVSprite: 1
+  evSpawnPositions: []
+  checkDirection: 0
+  doorRightPos: {x: 0, y: 0}
+  signSpawnPos: {x: 0, y: 0}
+  signMessage: "\u4E0A\u9762\u5199\u5230\uFF1A\u4E1C\u533A\u5927\u95E8"
+  signSprite: {fileID: 0}
 --- !u!1 &988342803 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7194460126918956866, guid: 2113078456fcc4949945eecb51ca1756, type: 3}
@@ -79497,7 +79975,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1596647582}
+    m_TransformParent: {fileID: 268637610}
     m_Modifications:
     - target: {fileID: 323595444093551685, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
       propertyPath: m_LocalScale.x
@@ -85035,7 +85513,7 @@ MonoBehaviour:
   initialDescription: "\u4E16\u95F4\u667A\u6167\u83AB\u8FC7\u4E8E\u6B64"
   initialStepCost: 0
   steps:
-  - description: 
+  - description: "\u4E16\u95F4\u667A\u6167\u83AB\u8FC7\u4E8E\u6B64"
     options:
     - endsEvent: 0
       buttonText: "\u79BB\u5F00"
@@ -91246,6 +91724,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2420289350633237481, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1132513981}
+    - targetCorrespondingSourceObject: {fileID: 2420289350633237481, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1132513984}
   m_SourcePrefab: {fileID: 100100000, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
 --- !u!4 &1132513979 stripped
 Transform:
@@ -91316,6 +91797,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 0, y: 0}
   type: 0
+--- !u!114 &1132513984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132513980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f14be78a8be964f995cde986389a15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenSprite: {fileID: 1939006480, guid: 53be57c55a6fe0046b148de6abb50933, type: 3}
+  fixedSprite: {fileID: -1696073034, guid: 53be57c55a6fe0046b148de6abb50933, type: 3}
 --- !u!1001 &1133193196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104785,7 +105280,7 @@ MonoBehaviour:
   initialDescription: "\u4F60\u770B\u5230\u4E86\u4E00\u53EA\u6B63\u5728\u6C89\u601D\u7684\u9ED1\u8272\u7334\u5B50"
   initialStepCost: 0
   steps:
-  - description: 
+  - description: "\u4F60\u770B\u5230\u4E86\u4E00\u53EA\u6B63\u5728\u6C89\u601D\u7684\u9ED1\u8272\u7334\u5B50"
     options:
     - endsEvent: 0
       buttonText: "\u4E0A\u524D\u77A7\u77A7"
@@ -106614,7 +107109,7 @@ MonoBehaviour:
   initialDescription: "\u8FD9\u7247\u5927\u5730\u4E0A\u5206\u51FA\u4E86\u4E24\u6761\u8DEF\uFF0C\u53EF\u60DC\u4F60\u4E0D\u80FD\u540C\u65F6\u53BB\u6D89\u8DB3\u3002"
   initialStepCost: 0
   steps:
-  - description: 
+  - description: "\u8FD9\u7247\u5927\u5730\u4E0A\u5206\u51FA\u4E86\u4E24\u6761\u8DEF\uFF0C\u53EF\u60DC\u4F60\u4E0D\u80FD\u540C\u65F6\u53BB\u6D89\u8DB3\u3002"
     options:
     - endsEvent: 1
       buttonText: "\u7EE7\u7EED\u524D\u8FDB"
@@ -112038,7 +112533,7 @@ MonoBehaviour:
   initialDescription: "\u6B22\u8FCE\u6765\u5230\u5173\u5C71\u53E3\uFF0C\u8981\u4ECE\u6B64\u5904\u8FC7\uFF0C\u7559\u4E0B\u4E70\u8DEF\u8D22"
   initialStepCost: 0
   steps:
-  - description: 
+  - description: "\u6B22\u8FCE\u6765\u5230\u5173\u5C71\u53E3\uFF0C\u8981\u4ECE\u6B64\u5904\u8FC7\uFF0C\u7559\u4E0B\u4E70\u8DEF\u8D22"
     options:
     - endsEvent: 0
       buttonText: "\u79BB\u5F00"
@@ -119128,7 +119623,7 @@ MonoBehaviour:
   initialDescription: "\u770B\u8D77\u6765\u8FD9\u662F\u4E00\u5EA7\u98DF\u5802"
   initialStepCost: 0
   steps:
-  - description: 
+  - description: "\u770B\u8D77\u6765\u8FD9\u662F\u4E00\u5EA7\u98DF\u5802"
     options:
     - endsEvent: 0
       buttonText: "\u79BB\u5F00"
@@ -119159,7 +119654,7 @@ MonoBehaviour:
   - description: "\u8FD8\u884C\uFF0C\u98DF\u54C1\u633A\u4E30\u5BCC\u7684"
     options:
     - endsEvent: 1
-      buttonText: "\u79BB\u5F00"
+      buttonText: "\u4E70\u4FBF\u5B9C\u7684\u70ED\u5E72\u9762"
       stepCost: 0
       spiritReward: 0
       successMessage: "\u7ADF\u7136\u662F\u672C\u5730\u7279\u8272\u7F8E\u98DF\uFF01\r\n\u867D\u7136\u4F60\u4E00\u70B9\u90FD\u4E0D\u997F\u4F46\u8FD8\u662F\u5927\u5403\u4E00\u5C0F\u7897\r\n\u4F60\u5145\u6EE1\u4E86\u51B3\u5FC3\uFF08\u62A4\u76FE+20\uFF09"
@@ -126511,10 +127006,7 @@ Transform:
   - {fileID: 1068397857}
   - {fileID: 514952097}
   - {fileID: 1521151007}
-  - {fileID: 1980472966}
   - {fileID: 985318032}
-  - {fileID: 1856358980}
-  - {fileID: 1002826216}
   - {fileID: 1635472336}
   - {fileID: 2066417286}
   - {fileID: 3911678}
@@ -130242,7 +130734,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8551839732871317754, guid: 8565e837d03a4e64685b2babc583ec04, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 919722761}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1448092677266419035, guid: 8565e837d03a4e64685b2babc583ec04, type: 3}
       insertIndex: -1
@@ -135043,7 +135538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventName: 
-  initialDescription: 
+  initialDescription: "\u4E00\u6761\u83AB\u540D\u5176\u5999\u7684\u77ED\u88E4"
   initialStepCost: 0
   steps:
   - description: "\u4E00\u6761\u83AB\u540D\u5176\u5999\u7684\u77ED\u88E4"
@@ -137846,6 +138341,7 @@ RectTransform:
   - {fileID: 924183520}
   - {fileID: 1833539059}
   - {fileID: 203907357}
+  - {fileID: 517166131}
   m_Father: {fileID: 520960656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
@@ -139662,6 +140158,7 @@ Transform:
   - {fileID: 1254398549}
   - {fileID: 419746851}
   - {fileID: 228125438}
+  - {fileID: 1980472966}
   m_Father: {fileID: 843286035}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1745816874 stripped
@@ -148823,7 +149320,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1596647582}
+    m_TransformParent: {fileID: 268637610}
     m_Modifications:
     - target: {fileID: 323595444093551685, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
       propertyPath: m_LocalScale.x
@@ -157549,7 +158046,8 @@ MonoBehaviour:
   successMessages:
   - "\u201C\u4F60\u80FD\u505A\u7684\uFF0C\u5C82\u6B62\u5982\u6B64\uFF01\u201D"
   - "\u6536\u4EF6\u4EBA\u662F\u6B63\u597D\u662F\u4F60\u81EA\u5DF1"
-  - "\u4F60\u5907\u53D7\u9F13\u821E\uFF0C\u611F\u52A8\u5730\u6655\u4E86\u8FC7\u53BB\uFF08hp-50\uFF09"
+  - "\u4F60\u5907\u53D7\u9F13\u821E\uFF0C\u611F\u52A8\u5730\u6655\u4E86\u8FC7\u53BB"
+  - "\uFF08hp-50\uFF09"
   stepCost: 3
   spiritReward: 0
   hpChange: -50
@@ -158193,7 +158691,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1596647582}
+    m_TransformParent: {fileID: 1744966208}
     m_Modifications:
     - target: {fileID: 323595444093551685, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
       propertyPath: m_LocalScale.x
@@ -158205,15 +158703,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 323595444093551685, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 73.35583
+      value: 82.13514
       objectReference: {fileID: 0}
     - target: {fileID: 323595444093551685, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4568243
+      value: -3.4662948
       objectReference: {fileID: 0}
     - target: {fileID: 323595444093551685, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.004944535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 323595444093551685, guid: 71593c132a3470f4f94a5038e755018b, type: 3}
       propertyPath: m_LocalRotation.w

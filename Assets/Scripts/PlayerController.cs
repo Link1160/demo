@@ -534,6 +534,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //GameManager.Instance.WinGame();
+
         if (GameManager.Instance.IsInEvent) return;
         if (isMoving) return;
 
@@ -779,6 +781,31 @@ public class PlayerController : MonoBehaviour
         Debug.Log("移动结束");
     }
 
+    public void TeleportTo(Vector2Int newPos)
+    {
+        Tile tile = map.GetTile(newPos);
+        if (tile == null)
+        {
+            Debug.LogError($"传送目标 {newPos} 不存在");
+            return;
+        }
+        gridPos = newPos;
+        transform.position = tile.transform.position;
+        // 更新距离显示
+        GameManager.Instance.UpdateDistanceDisplay(gridPos);
+        // 清除路径和移动状态
+        ClearPathIndicators();
+        currentPath = null;
+        pendingEventPos = null;
+        if (moveCoroutine != null)
+        {
+            StopCoroutine(moveCoroutine);
+            moveCoroutine = null;
+        }
+        isMoving = false;
+        // 停止动画
+        StopMoving();
+    }
     private TileEffectResult TriggerTileEffect(Vector2Int pos)
     {
         Tile t = map.GetTile(pos);
@@ -792,6 +819,21 @@ public class PlayerController : MonoBehaviour
                 return TileEffectResult.Continue;
 
             case TileType.Event:
+
+                SubwayEvent subway = map.GetTile(pos).GetComponent<SubwayEvent>();
+                if (subway != null)
+                {
+                    subway.Trigger();
+                    return TileEffectResult.Stop;
+                }
+
+                BluePlanetEvent bluePlanet = map.GetTile(pos).GetComponent<BluePlanetEvent>();
+                if (bluePlanet != null)
+                {
+                    bluePlanet.Trigger();
+                    return TileEffectResult.Stop;
+                }
+
                 EndPointEvent endPoint = map.GetTile(pos).GetComponent<EndPointEvent>();
                 if (endPoint != null)
                 {
