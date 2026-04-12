@@ -112567,10 +112567,10 @@ MonoBehaviour:
       spiritReward: 0
       successMessage: "\uFF08hp\u4E0A\u9650\u548Chp+14\uFF0C\u62A4\u76FE+21\uFF09"
       nextStepIndex: -1
-      increaseMaxHealth: 0
+      increaseMaxHealth: 14
       increaseHealth: 0
       hpChange: 0
-      addShield: 0
+      addShield: 21
       becomeWalkableOnComplete: 1
       moveToDoorRight: 0
       spawnSign: 0
