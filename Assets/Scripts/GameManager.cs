@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     public Vector2Int endPointPos;   // 终点坐标，在 Inspector 中手动填写
     public TMP_Text distanceText;        // 显示距离的 UI 文本（拖入）
+
+    public Font chineseFont;   // 拖入中文字体
     public void EnableHalfDamage()
     {
         halfDamageMode = true;
@@ -162,12 +164,12 @@ public class GameManager : MonoBehaviour
     private void UpdateUI()
     {
         if (healthText != null)
-            healthText.text = $"{health}/{maxHealth}";
+            healthText.text = $"HP：{health}/{maxHealth}";
         else
             Debug.LogWarning("healthText 未赋值");
 
         if (shieldText != null)
-            shieldText.text = $"Shield:{shield}";
+            shieldText.text = $"护盾：{shield}";
         else
             Debug.LogWarning("shieldText 未赋值");
     }
@@ -176,7 +178,7 @@ public class GameManager : MonoBehaviour
         if (distanceText != null)
         {
             int distance = Mathf.Abs(playerPos.x - endPointPos.x);
-            distanceText.text = $"final:{distance} ";
+            distanceText.text = $"距离终点距离：{distance} ";
         }
         else
         {

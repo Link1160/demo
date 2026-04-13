@@ -26,7 +26,7 @@ public class VictoryScreen : MonoBehaviour
         Debug.Log("读取到的分数: " + finalScore);
         if (scoreText != null)
         {
-            scoreText.text = "Score:" + finalScore;
+            scoreText.text = "最终分数：" + finalScore;
             Debug.Log("分数文本已设置: " + scoreText.text);
         }
         else

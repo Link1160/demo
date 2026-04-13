@@ -80,9 +80,11 @@ public class SubwayEvent : MonoBehaviour
         go.transform.SetParent(panel.transform, false);
         Text txt = go.AddComponent<Text>();
         txt.text = desc;
-        Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        // 使用 GameManager 中的中文字体
+        Font font = GameManager.Instance.chineseFont;
+        //Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         if (font == null) font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        if (font == null) font = Font.CreateDynamicFontFromOSFont("Arial", 24);
+        //if (font == null) font = Font.CreateDynamicFontFromOSFont("Arial", fontSize);
         txt.font = font;
         txt.fontSize = 24;
         txt.alignment = TextAnchor.MiddleCenter;
@@ -116,9 +118,11 @@ public class SubwayEvent : MonoBehaviour
         go.transform.SetParent(parent, false);
         Text txt = go.AddComponent<Text>();
         txt.text = text;
-        Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        // 使用 GameManager 中的中文字体
+        Font font = GameManager.Instance.chineseFont;
+        //Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         if (font == null) font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        if (font == null) font = Font.CreateDynamicFontFromOSFont("Arial", fontSize);
+        //if (font == null) font = Font.CreateDynamicFontFromOSFont("Arial", fontSize);
         txt.font = font;
         txt.fontSize = fontSize;
         txt.alignment = TextAnchor.MiddleCenter;

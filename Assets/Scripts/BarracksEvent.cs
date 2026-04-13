@@ -279,9 +279,11 @@ public class BarracksEvent : MonoBehaviour
         go.transform.SetParent(parent, false);
         Text txt = go.AddComponent<Text>();
         txt.text = text;
-        Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        // 使用 GameManager 中的中文字体
+        Font font = GameManager.Instance.chineseFont;
+        //Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         if (font == null) font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        if (font == null) font = Font.CreateDynamicFontFromOSFont("Arial", fontSize);
+        //if (font == null) font = Font.CreateDynamicFontFromOSFont("Arial", fontSize);
         txt.font = font;
         txt.fontSize = fontSize;
         txt.alignment = TextAnchor.MiddleCenter;
@@ -344,7 +346,7 @@ public class BarracksEvent : MonoBehaviour
         GameObject textGo = new GameObject("Text");
         textGo.transform.SetParent(panel.transform, false);
         Text txt = textGo.AddComponent<Text>();
-        txt.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        txt.font = GameManager.Instance.chineseFont;   // 新的一行
         if (txt.font == null) txt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
         if (txt.font == null) txt.font = Font.CreateDynamicFontFromOSFont("Arial", 30);
         txt.fontSize = 30;

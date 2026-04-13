@@ -328,7 +328,8 @@ public class SimpleEvent : MonoBehaviour
         GameObject textGo = new GameObject("Text");
         textGo.transform.SetParent(panel.transform, false);
         Text txt = textGo.AddComponent<Text>();
-        txt.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        //txt.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        txt.font = GameManager.Instance.chineseFont;   // 新的一行
         if (txt.font == null) txt.font = Font.CreateDynamicFontFromOSFont("Arial", 24);
         txt.fontSize = 24;
         txt.alignment = TextAnchor.MiddleCenter;
@@ -379,7 +380,8 @@ public class SimpleEvent : MonoBehaviour
         textGo.transform.SetParent(panel.transform, false);
         Text txt = textGo.AddComponent<Text>();
         txt.text = msg;
-        txt.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        //txt.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        txt.font = GameManager.Instance.chineseFont;   // 新的一行
         if (txt.font == null) txt.font = Font.CreateDynamicFontFromOSFont("Arial", 24);
         txt.fontSize = 24;
         txt.alignment = TextAnchor.MiddleCenter;
@@ -426,7 +428,8 @@ public class SimpleEvent : MonoBehaviour
         go.transform.SetParent(panel.transform, false);
         Text txt = go.AddComponent<Text>();
         txt.text = desc;
-        txt.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        //txt.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        txt.font = GameManager.Instance.chineseFont;   // 新的一行
         if (txt.font == null) txt.font = Font.CreateDynamicFontFromOSFont("Arial", 24);
         txt.fontSize = 24;
         txt.alignment = TextAnchor.MiddleCenter;
@@ -450,7 +453,8 @@ public class SimpleEvent : MonoBehaviour
         textGo.transform.SetParent(go.transform, false);
         Text txt = textGo.AddComponent<Text>();
         txt.text = label;
-        txt.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        //txt.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        txt.font = GameManager.Instance.chineseFont;   // 新的一行
         if (txt.font == null) txt.font = Font.CreateDynamicFontFromOSFont("Arial", 20);
         txt.fontSize = 20;
         txt.alignment = TextAnchor.MiddleCenter;
