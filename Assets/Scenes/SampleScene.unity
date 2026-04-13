@@ -17967,7 +17967,7 @@ MonoBehaviour:
       buttonText: "\u52A0\u6CB9\uFF0C\u98CE\u96E8\u65E0\u963B\uFF0C\u8FD9\u624D\u662F\u5B66\u751F\u8BE5\u6709\u7684\u6837\u5B50"
       stepCost: 0
       spiritReward: 0
-      successMessage: "\u5B64\u8239\u8FDC\u5F71\u9634\u7A7A\u5C3D\uFF0C\u552F\u89C1\u5B66\u751F\u5929\u9645\u6E38\u3002\uFF08hp+20\uFF09"
+      successMessage: "\u5B64\u8239\u8FDC\u5F71\u9634\u7A7A\u5C3D\uFF0C\u552F\u89C1\u5154\u7EB8\u5929\u9645\u6E38\u3002\uFF08hp+20\uFF09"
       nextStepIndex: -1
       increaseMaxHealth: 0
       increaseHealth: 0
@@ -17980,7 +17980,7 @@ MonoBehaviour:
       buttonText: "\u73B0\u5728\u6392\u6C34\u7CFB\u7EDF\u5DF2\u7ECF\u5F88\u597D\u4E86\uFF0C\u4F60\u4E0D\u5FC5\u518D\u8FD9\u4E48\u8F9B\u82E6\u4E86"
       stepCost: 0
       spiritReward: 0
-      successMessage: "\u662F\u5417\uFF1F\u771F\u597D\u554A\u2014\u2014\u5F80\u65E5\u7684\u865A\u5F71\u9010\u6E10\u6D88\u5931\uFF08\u62A4\u76FE+10\uFF0Chp+10\uFF09"
+      successMessage: "\u662F\u5417\uFF1F\u771F\u597D\u554A\u2014\u2014\n\u5F80\u65E5\u7684\u865A\u5F71\u9010\u6E10\u6D88\u5931\uFF08\u62A4\u76FE+10\uFF0Chp+10\uFF09"
       nextStepIndex: -1
       increaseMaxHealth: 0
       increaseHealth: 0
@@ -23663,11 +23663,26 @@ MonoBehaviour:
   - description: "\u554A\uFF0C\u8FD9\u662F\u6211\u4EEC\u7684\u5BB6\u5FBD\uFF0C\u4F60\u60F3\u8981\u561B\uFF0C\u6211\u9001\u7ED9\u4F60\u3002"
     options:
     - endsEvent: 0
-      buttonText: "\u8C22\u8C22\uFF01"
+      buttonText: "\u771F\u7684\u5417\uFF1F\uFF01"
       stepCost: 0
       spiritReward: 0
       successMessage: 
       nextStepIndex: 3
+      increaseMaxHealth: 0
+      increaseHealth: 0
+      hpChange: 0
+      addShield: 0
+      becomeWalkableOnComplete: 0
+      moveToDoorRight: 0
+      spawnSign: 0
+  - description: "\u201C\u5F53\u7136\u201D----\n\u4F60\u83B7\u5F97\u4E86\u5BB6\u5FBD"
+    options:
+    - endsEvent: 0
+      buttonText: "\u8C22\u8C22\uFF01\uFF08hp\u4E0A\u9650\u548Chp+20\uFF09"
+      stepCost: 0
+      spiritReward: 0
+      successMessage: 
+      nextStepIndex: 4
       increaseMaxHealth: 20
       increaseHealth: 0
       hpChange: 0
@@ -23675,7 +23690,7 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u4F60\u83B7\u5F97\u4E86\u5BB6\u5FBD\uFF08hp\u4E0A\u9650\u548Chp+20\uFF09"
+  - description: 
     options:
     - endsEvent: 0
       buttonText: "\u79BB\u5F00"
@@ -23691,11 +23706,11 @@ MonoBehaviour:
       moveToDoorRight: 0
       spawnSign: 0
     - endsEvent: 0
-      buttonText: "\u4E3A\u4EC0\u4E48\u662F\u692D\u5706\u7684\uFF1F"
+      buttonText: "\u201C\u4E3A\u4EC0\u4E48\u662F\u692D\u5706\u7684\uFF1F\u201D"
       stepCost: 0
       spiritReward: 0
       successMessage: 
-      nextStepIndex: 4
+      nextStepIndex: 5
       increaseMaxHealth: 0
       increaseHealth: 0
       hpChange: 0
@@ -24687,7 +24702,7 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u7F51\u4E0A\u8BF4\u8BF4\u5F97\u4E86\uFF0C\n\u73B0\u5B9E\u91CC\u8C01\u4E0D\u60F3\u5728\u4EBA\u7FA4\u4E2D\u5835\u534A\u5929\u7535\u52A8\u8F66\u4E0A\u65E9\u516B"
+  - description: "\u7F51\u4E0A\u8BF4\u8BF4\u5F97\u4E86\uFF0C\n\u73B0\u5B9E\u91CC\u8C01\u4E0D\u60F3\u9A91\u7740\u7535\u52A8\u8F66\u5835\u534A\u5929\u4E0A\u65E9\u516B"
     options:
     - endsEvent: 1
       buttonText: "\u8D70A\u680B\u697C\u68AF"
@@ -38032,7 +38047,7 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u4F60\u6709\u770B\u5230\u4E00\u53EA\u53EF\u7231\u7684\u767D\u5154\u5417\uFF1F\n\u5B83\u5927\u6982\u8FF7\u8DEF\u4E86\uFF0C\u6211\u4EEC\u662F\u5B83\u7684\u4F84\u5B50\u4EEC\u3002\n\u597D\u65E0\u804A\uFF0C\u548C\u6211\u4EEC\u73A9\u4E00\u4F1A\u513F\u5427\u3002"
+  - description: "\u201C\u4F60\u6709\u770B\u5230\u4E00\u53EA\u53EF\u7231\u7684\u767D\u5154\u5417\uFF1F\n\u5B83\u5927\u6982\u8FF7\u8DEF\u4E86\uFF0C\u6211\u4EEC\u662F\u5B83\u7684\u4F84\u5B50\u3002\n\u597D\u65E0\u804A\uFF0C\u4F60\u548C\u6211\u4EEC\u73A9\u4E00\u4F1A\u513F\u5427\u3002\u201D"
     options:
     - endsEvent: 0
       buttonText: "\u4E3A\u5154\u5B50\u4EEC\u8BB2\u8FF0\u4E00\u8DEF\u4EE5\u6765\u7684\u5192\u9669\u6545\u4E8B"
@@ -38042,19 +38057,34 @@ MonoBehaviour:
       nextStepIndex: 2
       increaseMaxHealth: 0
       increaseHealth: 0
+      hpChange: 0
+      addShield: 0
+      becomeWalkableOnComplete: 0
+      moveToDoorRight: 0
+      spawnSign: 0
+  - description: "\u597D\u60F3\u6210\u4E3A\u4F60\u4E00\u6837\u7684\u7403\u54C7"
+    options:
+    - endsEvent: 0
+      buttonText: "\u6C14\u6C1B\u4F3C\u4E4E\u6709\u4E9B\u538B\u6291\uFF08hp-20\uFF09"
+      stepCost: 0
+      spiritReward: 0
+      successMessage: 
+      nextStepIndex: 3
+      increaseMaxHealth: 0
+      increaseHealth: 0
       hpChange: -20
       addShield: 0
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u597D\u60F3\u6210\u4E3A\u4F60\u4E00\u6837\u7684\u7403\u54C7\n\n\u2014\u2014\u538B\u6291\u7684\u60C5\u7EEA\u4F3C\u4E4E\u5728\u8513\u5EF6\uFF08hp-20\uFF09"
+  - description: "\u4F60\u51B3\u5B9A\u505A\u70B9\u4EC0\u4E48"
     options:
     - endsEvent: 0
       buttonText: "\u4E00\u8D77\u6765\u4E0B\u68CB\u5427"
       stepCost: 0
       spiritReward: 0
       successMessage: 
-      nextStepIndex: 3
+      nextStepIndex: 4
       increaseMaxHealth: 0
       increaseHealth: 0
       hpChange: 0
@@ -38067,7 +38097,7 @@ MonoBehaviour:
       stepCost: 0
       spiritReward: 0
       successMessage: 
-      nextStepIndex: 4
+      nextStepIndex: 5
       increaseMaxHealth: 0
       increaseHealth: 0
       hpChange: 0
@@ -38091,7 +38121,7 @@ MonoBehaviour:
       moveToDoorRight: 0
       spawnSign: 0
     - endsEvent: 1
-      buttonText: "\u4F46\u4F60\u4F3C\u4E4E\u4E50\u5728\u5176\u4E2D"
+      buttonText: "\u4F60\u4F3C\u4E4E\u4E50\u5728\u5176\u4E2D"
       stepCost: 0
       spiritReward: 0
       successMessage: "\uFF08hp+20\uFF09"
@@ -39423,7 +39453,7 @@ MonoBehaviour:
       moveToDoorRight: 0
       spawnSign: 0
     - endsEvent: 0
-      buttonText: "\u4E0A\u524D\u7B54\u8BDD"
+      buttonText: "\u4E0A\u524D\u642D\u8BDD"
       stepCost: 3
       spiritReward: 0
       successMessage: 
@@ -39435,7 +39465,7 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u6CE5\u5C45\u7136\u627E\u7A9D\u6599\u5929\uFF1F\u4E0D\u6015\u7A9D\u4EAD\u4E0D\u540C\u4E0D\u61C2\u6CE5\u8BF4\u534E\u5417\uFF1F\n
+  - description: "\u6CE5\u5C45\u7136\u627E\u7A9D\u6599\u5929\uFF1F\u4E0D\u6015\u7A9D\u4EAD\u4E0D\u61C2\u6CE5\u8BF4\u534E\u5417\uFF1F\n
       \u8FD8\u597D\u7A9D\u6765\u81EA\u4E2D\u56FD\uFF0C\u7070\u4E2D\u6587\u3002"
     options:
     - endsEvent: 0
@@ -39454,14 +39484,14 @@ MonoBehaviour:
   - description: "\u522B\u8BA1\u7126\u8FD9\u4E9B\uFF0C\u518C\u5212\u8BF4\u7A9D\u6709\u7231\uFF0C\n\u6CE5\u89C9\u5F97\u4E3A\u4EC0\u4E48\u7A9D\u6709\u7231\uFF1F"
     options:
     - endsEvent: 0
-      buttonText: "\u662F\u56E0\u4E3A\u4F60\u5BB6\u597D\u591A\u96CC\u72EE\u5B50"
+      buttonText: "\u662F\u56E0\u4E3A\u6C5F\u6E56\u6D41\u4F20--\u201C\u7231\u5728\u82B1\u5E02\u201D"
       stepCost: 0
       spiritReward: 0
-      successMessage: "\u5B69\u5B50\uFF0C\u6CE5\u592A\u4E9A\u4EA6\u60F9\u3002\uFF08hp-50\uFF09"
+      successMessage: "\u5B69\u5B50\uFF0C\u6CE5\u592A\u6D6E\u6F5C\u60F9\u3002\uFF08hp-30\uFF09"
       nextStepIndex: -1
       increaseMaxHealth: 0
       increaseHealth: 0
-      hpChange: -50
+      hpChange: -30
       addShield: 0
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
@@ -47545,7 +47575,7 @@ MonoBehaviour:
   actionButtonText: "\u8FD9\u80FD\u5FCD\u4F4F\u4E0D\u559D\uFF1F"
   successMessages:
   - "\u633A\u597D\u559D\u7684\uFF0C\u4E00\u559D\u4E00\u4E2A\u4E0D\u5431\u58F0"
-  - "\rMan what can I say\uFF1F\r"
+  - "\rMan ,what can I say\uFF1F\r"
   - "\r\u4F60\u7834\u9632\u4E86\uFF0C\u4F46\u996E\u6599\u597D\u559D\uFF08hp-66\uFF0C\u62A4\u76FE+88\uFF09\r"
   stepCost: 3
   spiritReward: 88
@@ -50900,7 +50930,7 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u9762\u524D\u662F\u4E00\u4F4D\u7C89\u8272\u5934\u53D1\u7684\u5973\u5B69"
+  - description: "\u662F\u4E00\u4F4D\u7C89\u8272\u5934\u53D1\u7684\u5973\u5B69"
     options:
     - endsEvent: 0
       buttonText: "\u4F60\u8FD8\u597D\u5417\uFF1F\u4E3A\u4EC0\u4E48\u4E00\u4E2A\u4EBA\u5728\u8FD9\u91CC\uFF1F"
@@ -50915,13 +50945,13 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u554A\uFF01\u6211\u6211\u3001\u6211\u2026\u2026\u6211\u60F3\u7EC4\u5EFA\u4E00\u4E2A\u4E50\u961F\uFF0C\n\u6211\u4F1A\u5F39\u5409\u4ED6\uFF0C\u73B0\u5728\u2026\u2026\n\u8FD8\u5DEE\u4E00\u4E2A\u4E3B\u5531\uFF0C\u5C31\u662F\u627E\u4E0D\u5230\u2026\u2026"
+  - description: "\u201C\u554A\uFF01\u6211\u6211\u3001\u6211\u2026\u2026\u6211\u60F3\u7EC4\u5EFA\u4E00\u4E2A\u4E50\u961F\uFF0C\n\u6211\u4F1A\u5F39\u5409\u4ED6\uFF0C\u4F46\u662F......\u73B0\u5728\u8FD8\u5DEE\u4E00\u4E2A\u4E3B\u5531\uFF0C\n\u5C31\u662F\u627E\u4E0D\u5230\u2026\u2026\u201D"
     options:
     - endsEvent: 0
       buttonText: "\u8F7B\u8F7B\u62CD\u62CD\u5973\u5B69\u7684\u80A9\u8180\u5E76\u79BB\u5F00"
       stepCost: 0
       spiritReward: 0
-      successMessage: "\u5973\u5B69\u671B\u7740\u4F60\u8FDC\u53BB\uFF0C\u4EC0\u4E48\u4E8B\u90FD\u6CA1\u6709\u53D1\u751F"
+      successMessage: "\u5973\u5B69\u671B\u7740\u4F60\u8FDC\u53BB\uFF0C\u4EC0\u4E48\u4E8B\u90FD\u6CA1\u6709\u53D1\u751F\u3002"
       nextStepIndex: -1
       increaseMaxHealth: 0
       increaseHealth: 0
@@ -50959,7 +50989,7 @@ MonoBehaviour:
       moveToDoorRight: 0
       spawnSign: 0
     - endsEvent: 0
-      buttonText: "\u9009\u62E9\u300A\u9752\u6625\u30B3\u30F3\u30D7\u30EC\u30C3\u30AF\u30B9\u300B"
+      buttonText: "\u9009\u62E9\u300A\u9752\u6625complex\u300B"
       stepCost: 0
       spiritReward: 0
       successMessage: 
@@ -50971,7 +51001,7 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u5973\u5B69\u6FC0\u52A8\u5730\u770B\u5411\u4F60\r\n--\u201C\u4F60\u2026\u2026\u4F60\u80FD\u2026\u2026\u6765\uFF0C\u6765\u6211\u4EEC\u4E50\u961F\u2026\u2026\u5F53\u4E3B\u5531\u5417\uFF1F\uFF01\u201D"
+  - description: "\u5973\u5B69\u6FC0\u52A8\u5730\u770B\u5411\u4F60----\r\n\u201C\u4F60\u2026\u2026\u4F60\u80FD\u2026\u2026\u6765\uFF0C\u6765\u6211\u4EEC\u4E50\u961F\u2026\u2026\u5F53\u4E3B\u5531\u5417\uFF1F\uFF01\u201D"
     options:
     - endsEvent: 1
       buttonText: "\u6211\u771F\u7684\u53EF\u4EE5\u5417\uFF1F"
@@ -53940,10 +53970,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventName: 
-  initialDescription: "\u4F60\u770B\u5230\u4E86\u4E00\u53EA\u5154\u5B50\uFF0C\u4F3C\u4E4E\u6709\u70B9\u8FF7\u8DEF"
+  initialDescription: "\u4F60\u770B\u5230\u4E86\u4E00\u53EA\u5154\u5B50\uFF0C\u5B83\u4F3C\u4E4E\u6709\u70B9\u8FF7\u8DEF"
   initialStepCost: 0
   steps:
-  - description: "\u4F60\u770B\u5230\u4E86\u4E00\u53EA\u5154\u5B50\uFF0C\u4F3C\u4E4E\u6709\u70B9\u8FF7\u8DEF"
+  - description: "\u4F60\u770B\u5230\u4E86\u4E00\u53EA\u5154\u5B50\uFF0C\u5B83\u4F3C\u4E4E\u6709\u70B9\u8FF7\u8DEF"
     options:
     - endsEvent: 0
       buttonText: "\u79BB\u5F00"
@@ -57627,7 +57657,7 @@ MonoBehaviour:
   actionButtonText: "\u5BF9\u8BDD"
   successMessages:
   - "\u201D\u7403\uFF0C\u4F60\u597D\uFF0C\u6211\u521A\u4ECE\u7389\u5CAC\u5C71\u4E0A\u4E0B\u6765\uFF0C\u9001\u4F60\u70B9\u7279\u4EA7\u5427\uFF01\u201C"
-  - "\u4F60\u83B7\u5F97\u4E86\u4E00\u4E2A\u6708\u997C\uFF08\u5403\u4E0B\u56DE\u590D25hp\uFF09\uFF0C\u8FD9\u5BF9\u5417\uFF1F\uFF1F\uFF1F"
+  - "\u4F60\u83B7\u5F97\u4E86\u4E00\u4E2A\u6708\u997C\uFF08\u5403\u4E0B\u540E\u56DE\u590D25hp\uFF09\uFF0C\n\u8FD9\u5BF9\u5417\uFF1F\uFF1F\uFF1F"
   - "\u4F60\u9AD8\u5174\u9053\uFF1A\u201C\u8C22\u8C22\u5B66\u957F\uFF01\u201D"
   stepCost: 0
   spiritReward: 0
@@ -77007,7 +77037,7 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u539F\u6765\u662F\u5B66\u9662\u5EFA\u6821\u7EAA\u5FF5\u7891"
+  - description: "\u539F\u6765\u662F\u5EFA\u6821\u7EAA\u5FF5\u7891"
     options:
     - endsEvent: 1
       buttonText: "\u56DB\u8DB3\u9F0E\u7ACB\uFF0C\u6B64\u4E43\u56E2\u7ED3\u8054\u5408\uFF0C\u5171\u540C\u594B\u8FDB\u4E4B\u610F"
@@ -77026,7 +77056,7 @@ MonoBehaviour:
       buttonText: "\u56DB\u5757\u77F3\u677F\u9876\u4E2A\u7403\u513F\uFF1F\uFF1F"
       stepCost: 0
       spiritReward: 0
-      successMessage: "\u545C\u545C\uFF0C\u5927\u5B66\u56DB\u5E74\u9876\u4E2A\u7403\u54C7\u2014\u2014\uFF08hp\u4E0A\u9650+25\uFF0Chp-10\uFF09"
+      successMessage: "\u545C\u545C\uFF0C\u56DB\u5E74\u9876\u4E2A\u7403\u54C7\u2014\u2014\uFF08hp\u4E0A\u9650+25\uFF0Chp-10\uFF09"
       nextStepIndex: -1
       increaseMaxHealth: 25
       increaseHealth: 0
@@ -85550,11 +85580,26 @@ MonoBehaviour:
       increaseMaxHealth: 0
       increaseHealth: 0
       hpChange: 0
+      addShield: 0
+      becomeWalkableOnComplete: 0
+      moveToDoorRight: 0
+      spawnSign: 0
+  - description: "\u4F60\u53D1\u73B0\u4E86\u85CF\u5728\u80CC\u540E\u7684\u8D28\u80FD\u65B9\u7A0B\u516C\u5F0F"
+    options:
+    - endsEvent: 0
+      buttonText: "\uFF01\uFF08\u62A4\u76FE+30\uFF09"
+      stepCost: 0
+      spiritReward: 0
+      successMessage: 
+      nextStepIndex: 3
+      increaseMaxHealth: 0
+      increaseHealth: 0
+      hpChange: 0
       addShield: 30
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u4F60\u53D1\u73B0\u4E86\u85CF\u5728\u80CC\u540E\u7684\u8D28\u80FD\u65B9\u7A0B\u516C\u5F0F\uFF08\u62A4\u76FE+30\uFF09"
+  - description: 
     options:
     - endsEvent: 1
       buttonText: "\u8654\u8BDA\u53C2\u62DC\u4EE5\u4FDD\u4F51\u671F\u4E2D\u9AD8\u5206"
@@ -105342,23 +105387,23 @@ MonoBehaviour:
       nextStepIndex: 2
       increaseMaxHealth: 0
       increaseHealth: 0
-      hpChange: 10
-      addShield: 30
+      hpChange: 0
+      addShield: 0
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u4F60\u70ED\u7231\u7B2C\u4E5D\u827A\u672F\uFF0C\u5BF9\u5427\uFF1F\u8BA9\u6211\u4EEC\u4E00\u8D77\u5728\u8FD9\u4E2A\u96C6\u5927\u6210\u7684\u4FE1\u606F\u4E16\u754C\u53D1\u5C55\u5427\uFF01\uFF08hp+10,\u62A4\u76FE+30\uFF09"
+  - description: "\u4F60\u70ED\u7231\u7B2C\u4E5D\u827A\u672F\uFF0C\u5BF9\u5427\uFF1F\u8BA9\u6211\u4EEC\u4E00\u8D77\u5728\u8FD9\u4E2A\u96C6\u5927\u6210\u7684\u4FE1\u606F\u4E16\u754C\u53D1\u5C55\u5427\uFF01"
     options:
     - endsEvent: 1
       buttonText: '!'
       stepCost: 0
       spiritReward: 0
-      successMessage: "\u4F60\u5F88\u611F\u52A8\uFF0C\u5E26\u7740\u8FD9\u4F4D\u540C\u597D\u7684\u4FE1\u5FF5\uFF0C\u8D70\u5411\u524D\u53BB\u3002"
+      successMessage: "\u4F60\u5F88\u611F\u52A8\uFF0C\u5E26\u7740\u8FD9\u4F4D\u540C\u597D\u7684\u4FE1\u5FF5\uFF0C\u8D70\u5411\u524D\u53BB\u3002\uFF08hp+10,\u62A4\u76FE+30\uFF09"
       nextStepIndex: -1
       increaseMaxHealth: 0
       increaseHealth: 0
-      hpChange: 0
-      addShield: 0
+      hpChange: 10
+      addShield: 30
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
@@ -112528,10 +112573,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventName: 
-  initialDescription: "\u6B22\u8FCE\u6765\u5230\u5173\u5C71\u53E3\uFF0C\u8981\u4ECE\u6B64\u5904\u8FC7\uFF0C\u7559\u4E0B\u4E70\u8DEF\u8D22"
+  initialDescription: "\u6B22\u8FCE\u6765\u5230\u5173\u5C71\u53E3\uFF0C\u8981\u4ECE\u6B64\u5904\u8FC7\uFF0C\u7559\u4E0B\u4E70\u8DEF\u8D22\u3002"
   initialStepCost: 0
   steps:
-  - description: "\u6B22\u8FCE\u6765\u5230\u5173\u5C71\u53E3\uFF0C\u8981\u4ECE\u6B64\u5904\u8FC7\uFF0C\u7559\u4E0B\u4E70\u8DEF\u8D22"
+  - description: "\u6B22\u8FCE\u6765\u5230\u5173\u5C71\u53E3\uFF0C\u6B64\u5904\u975E\u5BFB\u5E38\u4E4B\u5730\uFF0C\u9700\u8EAB\u6000\u7EDD\u6280\u8005\u624D\u53EF\u901A\u8FC7\u3002"
     options:
     - endsEvent: 0
       buttonText: "\u79BB\u5F00"
@@ -112547,7 +112592,7 @@ MonoBehaviour:
       moveToDoorRight: 0
       spawnSign: 0
     - endsEvent: 0
-      buttonText: "\u4EA4\u8FC7\u8DEF\u8D39\uFF08hp-10\uFF09"
+      buttonText: "\u5C55\u793A\u4E00\u756A\u7EDD\u6280\uFF08hp-10\uFF09"
       stepCost: 0
       spiritReward: 0
       successMessage: 
@@ -112559,7 +112604,7 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u6211\u4EEC\u5173\u5C71\u53E3\u6709\u5E38\u9A7B\u6D3B\u52A8\uFF0C\r\n\u4E00\u4EFD\u8FC7\u8DEF\u8D39\uFF0C\u9001\u60A82\u5F20\u5730\u56FE\uFF0C3\u4EFD\u6307\u5BFC\u6559\u7A0B"
+  - description: "\u201C\u5F69\uFF01\u5C11\u4FA0\u771F\u662F\u6DF1\u85CF\u4E0D\u9732\u554A\uFF01\n----\u9001\u60A8\u4E00\u5F20\u5730\u56FE\u901A\u8FC7\u6B64\u5904\u3002\u201C"
     options:
     - endsEvent: 1
       buttonText: "\u4F60\u9AD8\u5174\u574F\u4E86"
@@ -119649,13 +119694,13 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u8FD8\u884C\uFF0C\u98DF\u54C1\u633A\u4E30\u5BCC\u7684"
+  - description: "\u8FD8\u884C\uFF0C\u83DC\u54C1\u633A\u4E30\u5BCC\u7684"
     options:
     - endsEvent: 1
       buttonText: "\u4E70\u4FBF\u5B9C\u7684\u70ED\u5E72\u9762"
       stepCost: 0
       spiritReward: 0
-      successMessage: "\u7ADF\u7136\u662F\u672C\u5730\u7279\u8272\u7F8E\u98DF\uFF01\r\n\u867D\u7136\u4F60\u4E00\u70B9\u90FD\u4E0D\u997F\u4F46\u8FD8\u662F\u5927\u5403\u4E00\u5C0F\u7897\r\n\u4F60\u5145\u6EE1\u4E86\u51B3\u5FC3\uFF08\u62A4\u76FE+20\uFF09"
+      successMessage: "\u7ADF\u7136\u662F\u672C\u5730\u7279\u8272\u7F8E\u98DF\uFF01\r\n\u867D\u7136\u4F60\u4E00\u70B9\u90FD\u4E0D\u997F\u4F46\u8FD8\u662F\u5927\u5403\u4E86\u4E00\u5C0F\u7897\r\n\u4F60\u5145\u6EE1\u4E86\u51B3\u5FC3\uFF08\u62A4\u76FE+20\uFF09"
       nextStepIndex: -1
       increaseMaxHealth: 0
       increaseHealth: 0
@@ -120628,7 +120673,7 @@ MonoBehaviour:
       moveToDoorRight: 0
       spawnSign: 0
     - endsEvent: 0
-      buttonText: "\u8FDB\u53BB\u4E70\u4E1C\u897F"
+      buttonText: "\u8FDB\u53BB\u4E70\u70B9\u4E1C\u897F\u5427"
       stepCost: 0
       spiritReward: 0
       successMessage: 
@@ -120640,7 +120685,7 @@ MonoBehaviour:
       becomeWalkableOnComplete: 0
       moveToDoorRight: 0
       spawnSign: 0
-  - description: "\u554A\uFF0C\u8FD9\u91CC\u662F\u751F\u6D3B\u8D85\u5E02"
+  - description: "\u6311\u9009ing"
     options:
     - endsEvent: 1
       buttonText: "\u6765\u6876\u6CE1\u9762\u6765\u6876\u6CE1\u9762\uFF08\u62A4\u76FE+10\uFF0Chp+10\uFF09"
@@ -120656,7 +120701,7 @@ MonoBehaviour:
       moveToDoorRight: 0
       spawnSign: 0
     - endsEvent: 1
-      buttonText: "\u6765\u74F6\u80A5\u5B85\u5FEB\u4E50\u6C34\uFF08hp\u4E0A\u9650+15\uFF0C\u62A4\u76FE+10"
+      buttonText: "\u6765\u74F6\u80A5\u5B85\u5FEB\u4E50\u6C34\uFF08hp\u4E0A\u9650+15\uFF0C\u62A4\u76FE+10\uFF09"
       stepCost: 0
       spiritReward: 0
       successMessage: "\u6CA1\u4EBA\u80FD\u62D2\u7EDD\u8FD9\u6B3E\u795E\u5947\u996E\u6599"
@@ -128099,6 +128144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 566251f8470e74d4f988587babb7957b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultButtonSprite: {fileID: -112128830, guid: dba18772385422b4883ca0b8aaa33b0f, type: 3}
   healthText: {fileID: 924183521}
   shieldText: {fileID: 1833539060}
   steps: 100
@@ -158040,7 +158086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventName: 
-  description: "\u4E00\u4E2A\u5E73\u5E73\u65E0\u5947\u7684\u4FE1\u7BB1\uFF0C\u91CC\u9762\u6709\u5C01\u4FE1"
+  description: "\u4E00\u4E2A\u5E73\u5E73\u65E0\u5947\u7684\u4FE1\u7BB1\uFF0C\u91CC\u9762\u6709\u5C01\u4FE1\u3002"
   actionButtonText: "\u5077\u5077\u6253\u5F00\u4FE1\u770B\u770B"
   successMessages:
   - "\u201C\u4F60\u80FD\u505A\u7684\uFF0C\u5C82\u6B62\u5982\u6B64\uFF01\u201D"

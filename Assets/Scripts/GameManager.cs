@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Sprite defaultButtonSprite;   // ÍÏÈëÄãµÄ°´Å¥¿òÍ¼Æ¬
+
     public TMP_Text healthText;
     public TMP_Text shieldText;
 
